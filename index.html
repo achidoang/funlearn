@@ -1,293 +1,362 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link rel="shortcut icon" type="png" href="images/icon/favicon.png">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Comaptible" content="IE=edge">
-	<title>FunLearn</title>
-	<meta name="desciption" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script type="text/javascript" src="script.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	<script>
-		$(window).on('scroll', function(){
-  			if($(window).scrollTop()){
-  			  $('nav').addClass('black');
- 			 }else {
- 		   $('nav').removeClass('black');
- 		 }
-		})
-	</script>
-</head>
-<body>
-<!-- Navigation Bar -->
-	<header id="header">
-		<nav>
-			<div class="logo"><img src="images/icon/Logo.png" alt="logo"></div>
-			<ul>
-				<li><a class="active" href="">Beranda</a></li>
-				<li><a href="#">Materi</a></li>
-				<li><a href="#">Quiz</a></li>
-				<li><a href="#team_section">Team</a></li>
-				<li><a href="#about_section">Tentang Kami</a></li>
-				<li><a href="#contactus_section">Kontak</a></li>
-			</ul>
-			<div class="srch"><input type="text" class="search" placeholder="Search here..."><img src="images/icon/search.png" alt="search" onclick=slide()></div>
-			<a class="get-started" href="login.html">Get Started</a>
-			<img src="images/icon/menu.png" class="menu" onclick="sideMenu(0)" alt="menu">
-		</nav>
-		<div class="head-container">
-			<div class="quote">
-				<p>Belajar Bahasa Inggris dengan Mudah dan Menyenangkan</p>
-				<h5>Materi dan quiz interaktif untuk anak kelas 3 SD</h5>
-				<div class="play-button" onclick="window.location.href='quiz-dan-materi.html'">
-					Mulai Belajar
-				</div>
-			</div>
-			<div class="svg-image">
-				<img src="images/extra/english.png" alt="png">
-			</div>
-		</div>
-		<div class="side-menu" id="side-menu">
-			<div class="close" onclick="sideMenu(1)"><img src="images/icon/close.png" alt=""></div>
-			<div class="user">
-				<img src="images/creator/person.png" alt="Username">
-				<p>Group 3</p>
-			</div>
-			<ul>
-				<li><a href="#about_section">About</a></li>
-				<li><a href="#team_section">Team</a></li>
-				<li><a href="#services_section">Services</a></li>
-				<li><a href="#contactus_section">Contact</a></li>
-				<li><a href="#feedBACK">Feedback</a></li>
-			</ul>
-		</div>
-	</header>
+  <head>
+    <link
+      rel="shortcut icon"
+      type="png"
+      href="assets/images/icon/favicon.png"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Comaptible" content="IE=edge" />
+    <title>FunLearn</title>
+    <meta name="desciption" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#navbar").load("navbar.html");
+        $("#footer").load("footer.html");
+      });
 
-	
-<!-- ABOUT -->
-	<div class="diffSection" id="about_section">
-		<center><p style="font-size: 50px; padding: 100px">About</p></center>
-		<div class="about-content">
-				<div class="side-image">
-					<img class="sideImage" src="images/icon/Logo.png">
-				</div>
-				<div class="side-text">
-					<h2>What you think about us ?</h2>
-					<p>FunLearn adalah aplikasi pembelajaran bahasa Inggris yang dirancang khusus untuk siswa kelas 3 SD, menawarkan pengalaman belajar yang seru dan interaktif. Dengan berbagai kuis menarik, anak-anak dapat mengasah kemampuan bahasa Inggris mereka sambil bermain dan menikmati proses belajar. Setiap kuis dirancang untuk memperkuat pemahaman kosakata, tata bahasa, serta kemampuan mendengarkan dan berbicara, sehingga anak-anak dapat belajar dengan cara yang menyenangkan dan efektif. Eng-Learn berkomitmen untuk menyediakan alat bantu belajar yang inovatif dan menyenangkan, mendukung perkembangan bahasa Inggris anak sejak dini.</p>
-				</div>
-		</div>
-	</div>
+      $(window).on("scroll", function () {
+        if ($(window).scrollTop()) {
+          $("nav").addClass("black");
+        } else {
+          $("nav").removeClass("black");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header id="header">
+      <div id="navbar"></div>
+      <div class="head-container">
+        <div class="quote">
+          <p>Belajar Bahasa Inggris dengan Mudah dan Menyenangkan</p>
+          <h5>Materi dan quiz interaktif untuk anak kelas 3 SD</h5>
+          <div
+            class="play-button"
+            onclick="window.location.href='quiz-dan-materi.html'"
+          >
+            Mulai Belajar
+          </div>
+        </div>
+        <div class="svg-image">
+          <img src="assets/images/extra/english.png" alt="png" />
+        </div>
+      </div>
+      <div class="side-menu" id="side-menu">
+        <div class="close" onclick="sideMenu(1)">
+          <img src="assets/images/icon/close.png" alt="" />
+        </div>
+        <div class="user">
+          <img src="assets/images/creator/person.png" alt="Username" />
+          <p>Group 3</p>
+        </div>
+        <ul>
+          <li><a href="#about_section">About</a></li>
+          <li><a href="#team_section">Team</a></li>
+          <li><a href="#services_section">Services</a></li>
+          <li><a href="#contactus_section">Contact</a></li>
+          <li><a href="#feedBACK">Feedback</a></li>
+        </ul>
+      </div>
+    </header>
 
-<!-- SERVICES -->
-	<div class="service-swipe">
-		<div class="diffSection" id="services_section">
-		<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Services</p></center>
-		</div>
-		<a href="subjects/computer_courses.html"><div class="s-card"><img src="images/icon/computer-courses.png"><p>Free Online Material</p></div></a>
-		<a href="subjects/jee.html"><div class="s-card"><img src="images/icon/brainbooster.png"><p>Daily Quiz</p></div></a>
-	</div>
+    <!-- ABOUT -->
+    <div class="diffSection" id="about_section">
+      <center><p style="font-size: 50px; padding: 100px">About</p></center>
+      <div class="about-content">
+        <div class="side-image">
+          <img class="sideImage" src="assets/images/icon/Logo.png" />
+        </div>
+        <div class="side-text">
+          <h2>What you think about us ?</h2>
+          <p>
+            FunLearn adalah aplikasi pembelajaran bahasa Inggris yang dirancang
+            khusus untuk siswa kelas 3 SD, menawarkan pengalaman belajar yang
+            seru dan interaktif. Dengan berbagai kuis menarik, anak-anak dapat
+            mengasah kemampuan bahasa Inggris mereka sambil bermain dan
+            menikmati proses belajar. Setiap kuis dirancang untuk memperkuat
+            pemahaman kosakata, tata bahasa, serta kemampuan mendengarkan dan
+            berbicara, sehingga anak-anak dapat belajar dengan cara yang
+            menyenangkan dan efektif. Eng-Learn berkomitmen untuk menyediakan
+            alat bantu belajar yang inovatif dan menyenangkan, mendukung
+            perkembangan bahasa Inggris anak sejak dini.
+          </p>
+        </div>
+      </div>
+    </div>
 
+    <!-- SERVICES -->
+    <div class="service-swipe">
+      <div class="diffSection" id="services_section">
+        <center>
+          <p
+            style="
+              font-size: 50px;
+              padding: 100px;
+              padding-bottom: 40px;
+              color: #fff;
+            "
+          >
+            Services
+          </p>
+        </center>
+      </div>
+      <a href="subjects/computer_courses.html"
+        ><div class="s-card">
+          <img src="assets/images/icon/computer-courses.png" />
+          <p>Free Online Material</p>
+        </div></a
+      >
+      <a href="subjects/jee.html"
+        ><div class="s-card">
+          <img src="assets/images/icon/brainbooster.png" />
+          <p>Daily Quiz</p>
+        </div></a
+      >
+    </div>
 
-<!-- TEAM -->
-	<div class="diffSection" id="team_section">
-		<center><p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px;">We're the Creators</p></center>
-		<div class="totalcard">
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Muhammad Aji</div>
-				<div id="detail">
-					<p>“ Leader “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Ahmat Zainul</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Muhammad Hyuga</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Danu</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Anggara</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Munawarotul</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Adelia Salsa</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Annisa</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Areta Lintang</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Bondan</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Jedy</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-			<div class="card">
-				<center><img src="images/creator/person.png"></center>
-				<center><div class="card-title">Ichan</div>
-				<div id="detail">
-					<p>“ Developer “</p>
-					<div class="duty"></div>
-				</div>
-				</center>
-			</div>
-		</div>
-	</div>
+    <!-- TEAM -->
+    <div class="diffSection" id="team_section">
+      <center>
+        <p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px">
+          We're the Creators
+        </p>
+      </center>
+      <div class="totalcard">
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Muhammad Aji</div>
+            <div id="detail">
+              <p>“ Leader “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Ahmat Zainul</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Muhammad Hyuga</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Danu</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Anggara</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Munawarotul</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Adelia Salsa</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Annisa</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Areta Lintang</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Bondan</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Jedy</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center><img src="assets/images/creator/person.png" /></center>
+          <center>
+            <div class="card-title">Ichan</div>
+            <div id="detail">
+              <p>“ Developer “</p>
+              <div class="duty"></div>
+            </div>
+          </center>
+        </div>
+      </div>
+    </div>
 
+    <!-- Reviews by Students -->
+    <div id="makeitfull">
+      <a href="#review_section"
+        ><img src="assets/images/icon/makeitfull.png"
+      /></a>
+    </div>
 
-<!-- Reviews by Students -->
-<div id="makeitfull">
-	<a href="#review_section"><img src="images/icon/makeitfull.png"></a>
-</div>
+    <!-- CONTACT US -->
+    <div class="diffSection" id="contactus_section">
+      <center><p style="font-size: 50px; padding: 100px">Contact Us</p></center>
+      <div class="csec"></div>
+      <div class="back-contact">
+        <div class="cc">
+          <form
+            action="mailto:roshank9419@gmail.com"
+            method="post"
+            enctype="text/plain"
+          >
+            <label>First Name <span class="imp">*</span></label
+            ><label style="margin-left: 185px"
+              >Last Name <span class="imp">*</span></label
+            ><br />
+            <center>
+              <input
+                type="text"
+                name=""
+                style="margin-right: 10px; width: 175px"
+                required="required"
+              /><input
+                type="text"
+                name="lname"
+                style="width: 175px"
+                required="required"
+              /><br />
+            </center>
+            <label>Email <span class="imp">*</span></label
+            ><br />
+            <input
+              type="email"
+              name="mail"
+              style="width: 100%"
+              required="required"
+            /><br />
+            <label>Message <span class="imp">*</span></label
+            ><br />
+            <input
+              type="text"
+              name="message"
+              style="width: 100%"
+              required="required"
+            /><br />
+            <label>Additional Details</label><br />
+            <textarea name="addtional"></textarea><br />
+            <button type="submit" id="csubmit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
-<!-- CONTACT US -->
-	<div class="diffSection" id="contactus_section">
-		<center><p style="font-size: 50px; padding: 100px">Contact Us</p></center>
-		<div class="csec"></div>
-		<div class="back-contact">
-			<div class="cc">
-			<form action="mailto:roshank9419@gmail.com" method="post" enctype="text/plain">
-				<label>First Name <span class="imp">*</span></label><label style="margin-left: 185px">Last Name <span class="imp">*</span></label><br>
-				<center>
-				<input type="text" name="" style="margin-right: 10px; width: 175px" required="required"><input type="text" name="lname" style="width: 175px" required="required"><br>
-				</center>
-				<label>Email <span class="imp">*</span></label><br>
-				<input type="email" name="mail" style="width: 100%" required="required"><br>
-				<label>Message <span class="imp">*</span></label><br>
-				<input type="text" name="message" style="width: 100%" required="required"><br>
-				<label>Additional Details</label><br>
-				<textarea name="addtional"></textarea><br>
-				<button type="submit" id="csubmit">Send Message</button>
-			</form>
-			</div>
-		</div>
-	</div>
+    <!-- FEEDBACK -->
+    <div class="title2" id="feedBACK">
+      <span>Give Feedback</span>
+      <div class="shortdesc2">
+        <p>Please share your valuable feedback to us</p>
+      </div>
+    </div>
 
+    <div class="feedbox">
+      <div class="feed">
+        <form
+          action="mailto:roshank9419@gmail.com"
+          method="post"
+          enctype="text/plain"
+        >
+          <label>Your Name</label><br />
+          <input type="text" name="" class="fname" required="required" /><br />
+          <label>Email</label><br />
+          <input type="email" name="mail" required="required" /><br />
+          <label>Additional Details</label><br />
+          <textarea name="addtional"></textarea><br />
+          <button type="submit" id="csubmit">Send Message</button>
+        </form>
+      </div>
+    </div>
 
-<!-- FEEDBACK -->
-	<div class="title2" id="feedBACK">
-		<span>Give Feedback</span>
-		<div class="shortdesc2">
-			<p>Please share your valuable feedback to us</p>
-		</div>
-	</div>
+    <!-- Sliding Information -->
+    <marquee
+      style="
+        background: linear-gradient(to right, #fa4b37, #df2771);
+        margin-top: 50px;
+      "
+      direction="left"
+      onmouseover="this.stop()"
+      onmouseout="this.start()"
+      scrollamount="20"
+      ><div class="marqu">
+        “Education is the passport to the future, for tomorrow belongs to those
+        who prepare for it today.” “Your attitude, not your aptitude, will
+        determine your altitude.” “If you think education is expensive, try
+        ignorance.” “The only person who is educated is the one who has learned
+        how to learn …and change.”
+      </div></marquee
+    >
 
-	<div class="feedbox">
-		<div class="feed">
-			<form action="mailto:roshank9419@gmail.com" method="post" enctype="text/plain">
-				<label>Your Name</label><br>
-				<input type="text" name="" class="fname" required="required"><br>
-				<label>Email</label><br>
-				<input type="email" name="mail" required="required"><br>
-				<label>Additional Details</label><br>
-				<textarea name="addtional"></textarea><br>
-				<button type="submit" id="csubmit">Send Message</button>
-			</form>
-		</div>
-	</div>
-
-<!-- Sliding Information -->
-	<marquee style="background: linear-gradient(to right, #FA4B37, #DF2771); margin-top: 50px;" direction="left" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="20"><div class="marqu">“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.” “Your attitude, not your aptitude, will determine your altitude.” “If you think education is expensive, try ignorance.” “The only person who is educated is the one who has learned how to learn …and change.”</div></marquee>
-
-<!-- FOOTER -->
-	<footer>
-		<div class="footer-container">
-			<div class="left-col">
-				<img src="images/icon/just-Logo.png" style="width: 200px;">
-				<div class="logo"></div>
-				<div class="social-media">
-					<a href="#"><img src="images/icon\fb.png"></a>
-					<a href="#"><img src="images/icon\insta.png"></a>
-					<a href="#"><img src="images/icon\tt.png"></a>
-					<a href="#"><img src="images/icon\ytube.png"></a>
-					<a href="#"><img src="images/icon\linkedin.png"></a>
-				</div><br><br>
-				<p class="rights-text">Copyright © 2021 Created By roup 3 Multimedia System</p>
-				<br><p><img src="images/icon/location.png"> Universitas Muhammadiyah Surakarta<br></p><br>
-				<p><img src="images/icon/phone.png"> +62-1234-567-890<br><img src="images/icon/mail.png">&nbsp; kelompok3@gmail.com</p>
-			</div>
-			<div class="right-col">
-				<h1 style="color: #fff">Our Newsletter</h1>
-				<div class="border"></div><br>
-				<p>Enter Your Email to get our News and updates.</p>
-				<form class="newsletter-form">
-					<input class="txtb" type="email" placeholder="Enter Your Email">
-					<input class="btn" type="submit" value="Submit">
-				</form>
-			</div>
-		</div>
-	</footer>
-
-</body>
+    <!-- FOOTER -->
+    <div id="footer"></div>
+  </body>
 </html>

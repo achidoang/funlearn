@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="shortcut icon"
+      type="png"
+      href="assets/images/icon/favicon.png"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Comaptible" content="IE=edge" />
+    <title>FunLearn</title>
+    <meta name="desciption" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation Bar -->
+      <nav>
+        <div class="logo">
+          <img src="assets/images/icon/Logo.png" alt="logo" />
+        </div>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="materi.html">Materi</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+        <div class="srch">
+          <input type="text" class="search" placeholder="Search here..." /><img
+            src="assets/images/icon/search.png"
+            alt="search"
+            onclick="slide()"
+          />
+        </div>
+        <a class="get-started" href="login.html">Get Started</a>
+        <img
+          src="assets/images/icon/menu.png"
+          class="menu"
+          onclick="sideMenu(0)"
+          alt="menu"
+        />
+      </nav>
+      <div class="side-menu" id="side-menu">
+        <div class="close" onclick="sideMenu(1)">
+          <img src="assets/images/icon/close.png" alt="" />
+        </div>
+        <div class="user">
+          <img src="assets/images/creator/person.png" alt="Username" />
+          <p>Group 3</p>
+        </div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div id="detail-quiz-content">
+        <!-- Detail quiz akan dimuat di sini -->
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-container">
+        <div class="left-col">
+          <img src="assets/images/icon/just-Logo.png" style="width: 200px" />
+          <div class="social-media">
+            <a href="#"><img src="assets/images/icon/fb.png" /></a>
+            <a href="#"><img src="assets/images/icon/insta.png" /></a>
+            <a href="#"><img src="assets/images/icon/tt.png" /></a>
+            <a href="#"><img src="assets/images/icon/ytube.png" /></a>
+            <a href="#"><img src="assets/images/icon/linkedin.png" /></a>
+          </div>
+          <br /><br />
+          <p class="rights-text">
+            Copyright © 2021 Created By Group 3 Multimedia System
+          </p>
+          <br />
+          <p>
+            <img src="assets/images/icon/location.png" /> Universitas
+            Muhammadiyah Surakarta<br />
+          </p>
+          <br />
+          <p>
+            <img src="assets/images/icon/phone.png" />
+            +62-1234-567-890<br /><img
+              src="assets/images/icon/mail.png"
+            />&nbsp; kelompok3@gmail.com
+          </p>
+        </div>
+        <div class="right-col">
+          <h1 style="color: #fff">Our Newsletter</h1>
+          <div class="border"></div>
+          <br />
+          <p>Enter Your Email to get our News and updates.</p>
+          <form class="newsletter-form">
+            <input class="txtb" type="email" placeholder="Enter Your Email" />
+            <input class="btn" type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
