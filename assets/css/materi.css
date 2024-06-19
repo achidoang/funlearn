@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+#home h1 {
+    font-size: 5em;
+    margin-bottom: 20px;
+}
+
+.materi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.materi-item {
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.materi-item:hover {
+    background-color: #0056b3;
+}
+
+#material h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#material p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#material h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
