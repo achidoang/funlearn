@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "question": "What is the opposite of 'big'?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "Small", "correct": true },
+      { "text": "Large" },
+      { "text": "Happy" }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What is the plural form of 'cat'?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "Cats", "correct": true },
+      { "text": "Cat" },
+      { "text": "Catty" }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What does the word 'friend' mean?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "Someone you like", "correct": true },
+      { "text": "Someone you don't like" },
+      { "text": "Someone you know" }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Look at the picture below:",
+    "image": "https://example.com/image1.jpg",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "A dog", "correct": true },
+      { "text": "A cat" },
+      { "text": "A bird" }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Watch the video below:",
+    "video": "https://example.com/video1.mp4",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "A boy is playing soccer", "correct": true },
+      { "text": "A girl is playing soccer" },
+      { "text": "A boy is playing basketball" }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What is the meaning of the word 'family'?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "A group of people related to each other", "correct": true },
+      { "text": "A group of friends" },
+      { "text": "A group of animals" }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Look at the animation below:",
+    "animation": "https://example.com/animation1.gif",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "A sun is shining", "correct": true },
+      { "text": "A moon is shining" },
+      { "text": "A star is shining" }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What is the opposite of 'hot'?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "Cold", "correct": true },
+      { "text": "Warm" },
+      { "text": "Sunny" }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "What is the plural form of 'book'?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "Books", "correct": true },
+      { "text": "Book" },
+      { "text": "Booky" }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What does the word 'chool' mean?",
+    "type": "multiple_choice",
+    "options": [
+      { "text": "A place where you learn", "correct": true },
+      { "text": "A place where you play" },
+      { "text": "A place where you eat" }
+    ]
+  }
+]
