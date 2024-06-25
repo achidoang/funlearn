@@ -4,7 +4,6 @@
     "choice1": "Kucing",
     "choice2": "Anjing",
     "choice3": "Sapi",
-    "choice4": "Kerbau",
     "answer": 1
   },
   {
@@ -12,7 +11,6 @@
     "choice1": "Rabbit",
     "choice2": "Mouse",
     "choice3": "Cow",
-    "choice4": "Cat",
     "answer": 3
   },
   {
@@ -20,7 +18,6 @@
     "choice1": "Weird",
     "choice2": "Annoying",
     "choice3": "troublemaker",
-    "choice4": "Pest",
     "answer": 1
   }
 ]

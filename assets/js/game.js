@@ -7,18 +7,34 @@ let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
-let availableQuesions = [];
+let availableQuestions = [];
+let questions = []; // Definisikan questions secara global
 
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = 5;
 
-fetch("../../data/questions.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((loadedQuestions) => {
-    questions = loadedQuestions;
-    startGame();
+// Ambil materi_id dari URL atau parameter lain sesuai kebutuhan
+const urlParams = new URLSearchParams(window.location.search);
+const materi_id = urlParams.get("materi_id");
+
+fetch(`../../getData.php`)
+  .then((response) => response.json())
+  .then((loadedMateri) => {
+    const selectedMateri = loadedMateri.find(
+      (materi) => materi.id == materi_id
+    );
+    if (selectedMateri && selectedMateri.quiz) {
+      questions = selectedMateri.quiz.map((q) => ({
+        question: q.question,
+        choice1: q.options[0],
+        choice2: q.options[1],
+        choice3: q.options[2],
+        answer: q.answer,
+      }));
+      startGame();
+    } else {
+      console.error("No quiz data found for the selected materi");
+    }
   })
   .catch((err) => {
     console.error(err);
@@ -27,20 +43,20 @@ fetch("../../data/questions.json")
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuesions = [...questions];
+  availableQuestions = [...questions];
   getNewQuestion();
 };
 
 getNewQuestion = () => {
-  if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     //go to the end page
     return window.location.assign("/end.html");
   }
   questionCounter++;
   questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`;
 
-  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-  currentQuestion = availableQuesions[questionIndex];
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
 
   choices.forEach((choice) => {
@@ -48,7 +64,7 @@ getNewQuestion = () => {
     choice.innerText = currentQuestion["choice" + number];
   });
 
-  availableQuesions.splice(questionIndex, 1);
+  availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
 };
 
@@ -79,5 +95,3 @@ incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
-
-startGame();
