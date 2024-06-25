@@ -8,33 +8,18 @@ let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-let questions = []; // Definisikan questions secara global
 
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 10;
 
-// Ambil materi_id dari URL atau parameter lain sesuai kebutuhan
-const urlParams = new URLSearchParams(window.location.search);
-const materi_id = urlParams.get("materi_id");
-
-fetch(`../../getData.php`)
-  .then((response) => response.json())
-  .then((loadedMateri) => {
-    const selectedMateri = loadedMateri.find(
-      (materi) => materi.id == materi_id
-    );
-    if (selectedMateri && selectedMateri.quiz) {
-      questions = selectedMateri.quiz.map((q) => ({
-        question: q.question,
-        choice1: q.options[0],
-        choice2: q.options[1],
-        choice3: q.options[2],
-        answer: q.answer,
-      }));
-      startGame();
-    } else {
-      console.error("No quiz data found for the selected materi");
-    }
+fetch("http://localhost/funlearn/data/getData.php")
+  .then((response) => {
+    return response.json();
+  })
+  .then((loadedQuestions) => {
+    // Assuming you want to use the first materi's quiz for the game
+    questions = loadedQuestions[0].quiz;
+    startGame();
   })
   .catch((err) => {
     console.error(err);
@@ -48,23 +33,24 @@ startGame = () => {
 };
 
 getNewQuestion = () => {
-  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (
+    questionCounter >= availableQuestions.length ||
+    questionCounter >= MAX_QUESTIONS
+  ) {
     //go to the end page
     return window.location.assign("/end.html");
   }
+
+  currentQuestion = availableQuestions[questionCounter];
   questionCounter++;
   questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`;
 
-  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
 
-  choices.forEach((choice) => {
-    const number = choice.dataset["number"];
-    choice.innerText = currentQuestion["choice" + number];
+  choices.forEach((choice, index) => {
+    choice.innerText = currentQuestion.options[index];
   });
 
-  availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
 };
 
@@ -74,10 +60,10 @@ choices.forEach((choice) => {
 
     acceptingAnswers = false;
     const selectedChoice = e.target;
-    const selectedAnswer = selectedChoice.dataset["number"];
+    const selectedAnswer = selectedChoice.innerText;
 
     const classToApply =
-      selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+      selectedAnswer === currentQuestion.answer ? "correct" : "incorrect";
 
     if (classToApply === "correct") {
       incrementScore(CORRECT_BONUS);
@@ -95,3 +81,5 @@ incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
+
+startGame();
