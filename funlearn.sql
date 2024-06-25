@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 02:41 PM
+-- Generation Time: Jun 25, 2024 at 04:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -60,78 +60,77 @@ INSERT INTO `materi` (`id`, `title`, `description`, `video_url`) VALUES
 CREATE TABLE `quiz` (
   `id` int(11) NOT NULL,
   `materi_id` int(11) DEFAULT NULL,
-  `question` text NOT NULL,
-  `option1` varchar(255) NOT NULL,
-  `option2` varchar(255) NOT NULL,
-  `option3` varchar(255) NOT NULL,
-  `answer` varchar(255) NOT NULL
+  `question` text DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`options`)),
+  `answer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`id`, `materi_id`, `question`, `option1`, `option2`, `option3`, `answer`) VALUES
-(1, 1, 'What is the first letter in the alphabet?', 'A', 'B', 'C', 'A'),
-(2, 1, 'Which letter comes after G in the alphabet?', 'H', 'I', 'J', 'H'),
-(3, 1, 'What is the last letter in the alphabet?', 'X', 'Y', 'Z', 'Z'),
-(4, 1, 'Which letter is before K in the alphabet?', 'I', 'J', 'L', 'J'),
-(5, 1, 'Which letter comes after N in the alphabet?', 'O', 'P', 'Q', 'O'),
-(6, 2, '\"We\" is used to refer to...', 'Them', 'Us', 'Her', 'Us'),
-(7, 2, '\"They\" is used to refer to...', 'Them', 'Us', 'Her', 'Them'),
-(8, 2, 'Choose the correct sentence: \"__ are going to the park.\"', 'We', 'They', 'He', 'We'),
-(9, 2, '\"We\" is used when talking about...', 'Ourselves and others', 'Things', 'Other people', 'Ourselves and others'),
-(10, 2, '\"They\" is used when talking about...', 'Ourselves and others', 'Things', 'Other people', 'Ourselves and others'),
-(11, 3, '\"He ____ a new car.\"', 'Have', 'Had', 'Has', 'Has'),
-(12, 3, '\"They ____ many books.\"', 'Had', 'Have', 'Has', 'Have'),
-(13, 3, '\"She ____ a pet cat.\"', 'Have', 'Has', 'Had', 'Has'),
-(14, 3, '\"I ____ a pencil.\"', 'Have', 'Had', 'Has', 'Have'),
-(15, 3, '\"We ____ a big house.\"', 'Have', 'Had', 'Has', 'Have'),
-(16, 4, '\"I ____ swim.\"', 'Can', 'Will', 'Could', 'Can'),
-(17, 4, '\"He ____ play the guitar.\"', 'Can', 'Will', 'Could', 'Can'),
-(18, 4, '\"They ____ speak English.\"', 'Can', 'Will', 'Could', 'Can'),
-(19, 4, '\"We ____ go to the party.\"', 'Can', 'Will', 'Could', 'Can'),
-(20, 4, '\"She ____ ride a bike.\"', 'Can', 'Will', 'Could', 'Can'),
-(21, 5, 'The cat is ____ the table.', 'In', 'On', 'Under', 'On'),
-(22, 5, 'The book is ____ the bag.', 'On', 'In', 'Under', 'In'),
-(23, 5, 'The dog is ____ the car.', 'Next to', 'On', 'In', 'Next to'),
-(24, 5, 'The keys are ____ the chair.', 'On', 'Under', 'In', 'Under'),
-(25, 5, 'The picture is ____ the wall.', 'On', 'In', 'Under', 'On'),
-(26, 6, '\"These\" is used for things...', 'Far from the speaker', 'Close to the speaker', 'Close to the listener', 'Close to the speaker'),
-(27, 6, '\"Those\" is used for things...', 'Close to the listener', 'Far from the speaker', 'Close to the speaker', 'Far from the speaker'),
-(28, 6, 'Choose the correct sentence: \"__ are my books.\"', 'These', 'That', 'Those', 'These'),
-(29, 6, 'Choose the correct sentence: \"__ are your shoes.\"', 'These', 'Those', 'This', 'Those'),
-(30, 6, '\"These\" refers to things...', 'Far from the speaker', 'Close to the speaker', 'Close to the listener', 'Close to the speaker'),
-(31, 7, 'Which one is a form of transportation?', 'Car', 'Tree', 'Bus', 'Car'),
-(32, 7, 'Which one flies in the sky?', 'Bus', 'Airplane', 'Car', 'Airplane'),
-(33, 7, 'Which one runs on tracks?', 'Boat', 'Train', 'Car', 'Train'),
-(34, 7, 'Which one is used on water?', 'Car', 'Bus', 'Boat', 'Boat'),
-(35, 7, 'Which one has two wheels?', 'Bus', 'Bicycle', 'Car', 'Bicycle'),
-(36, 8, 'What is the weather like when the sun is shining?', 'Rainy', 'Sunny', 'Cloudy', 'Sunny'),
-(37, 8, 'What is the weather like when water falls from the sky?', 'Cloudy', 'Snowy', 'Rainy', 'Rainy'),
-(38, 8, 'What is the weather like when there are many clouds?', 'Sunny', 'Cloudy', 'Snowy', 'Cloudy'),
-(39, 8, 'What is the weather like when there is strong wind?', 'Windy', 'Rainy', 'Cloudy', 'Windy'),
-(40, 8, 'What is the weather like when snow falls?', 'Sunny', 'Cloudy', 'Snowy', 'Snowy'),
-(41, 9, '\"This is ____ book.\" (milik saya)', 'My', 'Your', 'His', 'My'),
-(42, 9, '\"That is ____ dog.\" (milikmu)', 'My', 'Your', 'His', 'Your'),
-(43, 9, '\"She loves ____ cat.\" (miliknya perempuan)', 'His', 'Her', 'Its', 'Her'),
-(44, 9, '\"We enjoy ____ time.\" (milik kami/kita)', 'Their', 'Our', 'His', 'Our'),
-(45, 9, '\"They are with ____ parents.\" (milik mereka)', 'Their', 'Our', 'His', 'Their'),
-(46, 10, 'Which word is an adjective?', 'Beautiful', 'And', 'But', 'Beautiful'),
-(47, 10, 'Which word is a conjunction?', 'Happy', 'Or', 'But', 'Or'),
-(48, 10, 'Choose the correct sentence: \"The cat is small ____ cute.\"', 'And', 'But', 'Or', 'And'),
-(49, 10, 'Choose the correct sentence: \"She is tall ____ not very strong.\"', 'Or', 'But', 'Because', 'But'),
-(50, 10, '\"Big\" and \"small\" are examples of...', 'Adjectives', 'Conjunctions', 'Nouns', 'Adjectives'),
-(71, 0, 'Which letter comes after P in the alphabet?', 'Q', 'R', 'S', 'Q'),
-(72, 0, 'Choose the correct sentence: \"__ are going to the store.\"', 'They', 'We', 'She', 'They'),
-(73, 0, '\"She ____ three brothers.\"', 'Have', 'Has', 'Had', 'Has'),
-(74, 0, 'What is the opposite of \"can\"?', 'May', 'Will', 'Cannot', 'Cannot'),
-(75, 0, 'The cat is ____ the table.', 'In', 'On', 'Under', 'On'),
-(76, 0, 'Choose the correct sentence: \"__ are my shoes.\"', 'Those', 'This', 'These', 'These'),
-(77, 0, 'Which one is used for traveling on water?', 'Car', 'Train', 'Boat', 'Boat'),
-(78, 0, 'What is the weather like when it is not raining and the sun is shining brightly?', 'Sunny', 'Rainy', 'Cloudy', 'Sunny'),
-(79, 0, '\"Their\" is used to show...', 'My possession', 'Our possession', 'Their possession', 'Their possession'),
-(80, 0, 'Which word is a conjunction?', 'Beautiful', 'And', 'Fast', 'And');
+INSERT INTO `quiz` (`id`, `materi_id`, `question`, `type`, `options`, `answer`) VALUES
+(1, 1, 'What is the first letter in the alphabet?', 'multiple_choice', '[{\"option\": \"A\"}, {\"option\": \"B\"}, {\"option\": \"C\"}]', 'A'),
+(2, 1, 'Which letter comes after G in the alphabet?', 'multiple_choice', '[{\"option\": \"H\"}, {\"option\": \"I\"}, {\"option\": \"J\"}]', 'H'),
+(3, 1, 'What is the last letter in the alphabet?', 'multiple_choice', '[{\"option\": \"X\"}, {\"option\": \"Y\"}, {\"option\": \"Z\"}]', 'Z'),
+(4, 1, 'Write down the letter after P in the alphabet.', 'short_answer', NULL, 'Q'),
+(5, 1, 'Write down the letter before K in the alphabet.', 'short_answer', NULL, 'J'),
+(6, 2, '\"We\" is used to refer to...', 'multiple_choice', '[{\"option\": \"Them\"}, {\"option\": \"Us\"}, {\"option\": \"Her\"}]', 'Us'),
+(7, 2, '\"They\" is used to refer to...', 'multiple_choice', '[{\"option\": \"Them\"}, {\"option\": \"Us\"}, {\"option\": \"Her\"}]', 'Them'),
+(8, 2, 'Choose the correct sentence: \"__ are going to the park.\"', 'multiple_choice', '[{\"option\": \"We\"}, {\"option\": \"They\"}, {\"option\": \"He\"}]', 'We'),
+(9, 2, '\"We\" is used when talking about...', 'short_answer', NULL, 'Ourselves and others'),
+(10, 2, '\"They\" is used when talking about...', 'short_answer', NULL, 'Ourselves and others'),
+(11, 3, '\"He ____ a new car.\"', 'multiple_choice', '[{\"option\": \"Have\"}, {\"option\": \"Had\"}, {\"option\": \"Has\"}]', 'Has'),
+(12, 3, '\"They ____ many books.\"', 'multiple_choice', '[{\"option\": \"Had\"}, {\"option\": \"Have\"}, {\"option\": \"Has\"}]', 'Have'),
+(13, 3, '\"She ____ a pet cat.\"', 'multiple_choice', '[{\"option\": \"Have\"}, {\"option\": \"Has\"}, {\"option\": \"Had\"}]', 'Has'),
+(14, 3, '\"I ____ a pencil.\"', 'short_answer', NULL, 'Have'),
+(15, 3, '\"We ____ a big house.\"', 'short_answer', NULL, 'Have'),
+(16, 4, '\"I ____ swim.\"', 'multiple_choice', '[{\"option\": \"Can\"}, {\"option\": \"Will\"}, {\"option\": \"Could\"}]', 'Can'),
+(17, 4, '\"He ____ play the guitar.\"', 'multiple_choice', '[{\"option\": \"Can\"}, {\"option\": \"Will\"}, {\"option\": \"Could\"}]', 'Can'),
+(18, 4, '\"They ____ speak English.\"', 'multiple_choice', '[{\"option\": \"Can\"}, {\"option\": \"Will\"}, {\"option\": \"Could\"}]', 'Can'),
+(19, 4, '\"We ____ go to the party.\"', 'short_answer', NULL, 'Can'),
+(20, 4, '\"She ____ ride a bike.\"', 'short_answer', NULL, 'Can'),
+(21, 5, 'The cat is ____ the table.', 'multiple_choice', '[{\"option\": \"In\"}, {\"option\": \"On\"}, {\"option\": \"Under\"}]', 'On'),
+(22, 5, 'The book is ____ the bag.', 'multiple_choice', '[{\"option\": \"On\"}, {\"option\": \"In\"}, {\"option\": \"Under\"}]', 'In'),
+(23, 5, 'The dog is ____ the car.', 'multiple_choice', '[{\"option\": \"Next to\"}, {\"option\": \"On\"}, {\"option\": \"In\"}]', 'Next to'),
+(24, 5, 'The keys are ____ the chair.', 'short_answer', NULL, 'Under'),
+(25, 5, 'The picture is ____ the wall.', 'short_answer', NULL, 'On'),
+(26, 6, '\"These\" is used for things...', 'multiple_choice', '[{\"option\": \"Far from the speaker\"}, {\"option\": \"Close to the speaker\"}, {\"option\": \"Close to the listener\"}]', 'Close to the speaker'),
+(27, 6, '\"Those\" is used for things...', 'multiple_choice', '[{\"option\": \"Close to the listener\"}, {\"option\": \"Far from the speaker\"}, {\"option\": \"Close to the speaker\"}]', 'Far from the speaker'),
+(28, 6, 'Choose the correct sentence: \"__ are my books.\"', 'multiple_choice', '[{\"option\": \"These\"}, {\"option\": \"That\"}, {\"option\": \"Those\"}]', 'These'),
+(29, 6, 'Choose the correct sentence: \"__ are your shoes.\"', 'short_answer', NULL, 'Those'),
+(30, 6, '\"These\" refers to things...', 'short_answer', NULL, 'Close to the speaker'),
+(31, 7, 'Which one is a form of transportation?', 'multiple_choice', '[{\"option\": \"Car\"}, {\"option\": \"Tree\"}, {\"option\": \"Bus\"}]', 'Car'),
+(32, 7, 'Which one flies in the sky?', 'multiple_choice', '[{\"option\": \"Bus\"}, {\"option\": \"Airplane\"}, {\"option\": \"Car\"}]', 'Airplane'),
+(33, 7, 'Which one runs on tracks?', 'multiple_choice', '[{\"option\": \"Boat\"}, {\"option\": \"Train\"}, {\"option\": \"Car\"}]', 'Train'),
+(34, 7, 'Which one is used on water?', 'short_answer', NULL, 'Boat'),
+(35, 7, 'Which one has two wheels?', 'short_answer', NULL, 'Bicycle'),
+(36, 8, 'What is the weather like when the sun is shining?', 'multiple_choice', '[{\"option\": \"Rainy\"}, {\"option\": \"Sunny\"}, {\"option\": \"Cloudy\"}]', 'Sunny'),
+(37, 8, 'What is the weather like when water falls from the sky?', 'multiple_choice', '[{\"option\": \"Cloudy\"}, {\"option\": \"Snowy\"}, {\"option\": \"Rainy\"}]', 'Rainy'),
+(38, 8, 'What is the weather like when there are many clouds?', 'multiple_choice', '[{\"option\": \"Sunny\"}, {\"option\": \"Cloudy\"}, {\"option\": \"Snowy\"}]', 'Cloudy'),
+(39, 8, 'What is the weather like when there is strong wind?', 'short_answer', NULL, 'Windy'),
+(40, 8, 'What is the weather like when snow falls?', 'short_answer', NULL, 'Snowy'),
+(41, 9, '\"This is ____ book.\" (milik saya)', 'multiple_choice', '[{\"option\": \"My\"}, {\"option\": \"Your\"}, {\"option\": \"His\"}]', 'My'),
+(42, 9, '\"That is ____ dog.\" (milikmu)', 'multiple_choice', '[{\"option\": \"My\"}, {\"option\": \"Your\"}, {\"option\": \"His\"}]', 'Your'),
+(43, 9, '\"She loves ____ cat.\" (miliknya perempuan)', 'multiple_choice', '[{\"option\": \"His\"}, {\"option\": \"Her\"}, {\"option\": \"Its\"}]', 'Her'),
+(44, 9, '\"We enjoy ____ time.\" (milik kami/kita)', 'short_answer', NULL, 'Our'),
+(45, 9, '\"They are with ____ parents.\" (milik mereka)', 'short_answer', NULL, 'Their'),
+(46, 10, 'Which word is an adjective?', 'multiple_choice', '[{\"option\": \"Beautiful\"}, {\"option\": \"And\"}, {\"option\": \"But\"}]', 'Beautiful'),
+(47, 10, 'Which word is a conjunction?', 'multiple_choice', '[{\"option\": \"Happy\"}, {\"option\": \"Or\"}, {\"option\": \"But\"}]', 'Or'),
+(48, 10, 'Choose the correct sentence: \"The cat is small ____ cute.\"', 'multiple_choice', '[{\"option\": \"And\"}, {\"option\": \"But\"}, {\"option\": \"Or\"}]', 'And'),
+(49, 10, 'Choose the correct sentence: \"She is tall ____ not very strong.\"', 'short_answer', NULL, 'But'),
+(50, 10, '\"Big\" and \"small\" are examples of...', 'short_answer', NULL, 'Adjectives'),
+(51, 0, 'What is the first letter in the alphabet?', 'multiple_choice', '[{\"option\": \"A\"}, {\"option\": \"B\"}, {\"option\": \"C\"}]', 'A'),
+(52, 0, 'Which word is a possessive adjective?', 'multiple_choice', '[{\"option\": \"Our\"}, {\"option\": \"Have\"}, {\"option\": \"Beautiful\"}]', 'Our'),
+(53, 0, 'Which sentence is correct: \"__ are going to the park.\"', 'multiple_choice', '[{\"option\": \"We\"}, {\"option\": \"They\"}, {\"option\": \"He\"}]', 'We'),
+(54, 0, 'What does \"can\'t\" mean?', 'multiple_choice', '[{\"option\": \"Able to\"}, {\"option\": \"Not able to\"}, {\"option\": \"Willing to\"}]', 'Not able to'),
+(55, 0, 'Where is the cat in relation to the table?', 'multiple_choice', '[{\"option\": \"In\"}, {\"option\": \"On\"}, {\"option\": \"Under\"}]', 'On'),
+(56, 0, 'What is the opposite of \"this\"?', 'short_answer', NULL, 'Those'),
+(57, 0, 'Complete the sentence: \"She ____ a pet cat.\"', 'short_answer', NULL, 'Has'),
+(58, 0, 'What do you call words that describe people, places, or things?', 'short_answer', NULL, 'Adjectives'),
+(59, 0, 'Complete the sentence: \"They ____ speak English.\"', 'short_answer', NULL, 'Can'),
+(60, 0, 'What is the weather like when it rains?', 'short_answer', NULL, 'Rainy');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +163,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- Constraints for dumped tables
