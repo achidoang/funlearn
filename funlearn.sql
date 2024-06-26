@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 04:05 PM
+-- Generation Time: Jun 26, 2024 at 05:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -49,7 +49,8 @@ INSERT INTO `materi` (`id`, `title`, `description`, `video_url`) VALUES
 (7, 'Transportation', 'Transportation adalah istilah yang mencakup berbagai macam alat transportasi seperti mobil, bus, kereta, pesawat, sepeda, dan lain-lain. Mempelajari jenis-jenis transportasi membantu dalam memahami dan berbicara tentang cara berpindah tempat dalam bahasa Inggris. Materi ini akan memperkenalkan anak-anak pada berbagai jenis transportasi melalui gambar, video, dan cerita yang menarik. Dengan pemahaman yang baik tentang transportasi, anak-anak dapat berbicara tentang perjalanan mereka dan memahami informasi tentang transportasi umum.', 'https://www.youtube.com/embed/0z620fd11j0?si=6dwf5pU9okjaTZPO'),
 (8, 'Weather', 'Weather atau cuaca mencakup istilah-istilah yang digunakan untuk mendeskripsikan kondisi atmosfer seperti sunny (cerah), rainy (hujan), cloudy (berawan), windy (berangin), dan snowy (bersalju). Pengetahuan tentang cuaca penting dalam percakapan sehari-hari. Melalui materi ini, anak-anak akan belajar berbagai istilah cuaca dan bagaimana mendeskripsikan cuaca dalam bahasa Inggris. Dengan menggunakan gambar, video, dan aktivitas menarik, mereka akan lebih mudah memahami dan menggunakan istilah cuaca dalam kehidupan sehari-hari.', 'https://www.youtube.com/embed/dMN7NVSbDZI?si=H_RvSWmnpCBDTX7c'),
 (9, 'Possessive Adjectives', 'Possessive adjectives adalah kata sifat yang menunjukkan kepemilikan. Contoh termasuk \"my\" (milik saya), \"your\" (milikmu), \"his\" (miliknya laki-laki), \"her\" (miliknya perempuan), \"its\" (miliknya benda/hewan), \"our\" (milik kami/kita), dan \"their\" (milik mereka). Materi ini akan membantu anak-anak memahami dan menggunakan kata sifat kepemilikan dalam berbagai konteks. Dengan latihan dan contoh kalimat yang jelas, anak-anak akan belajar bagaimana menyatakan kepemilikan dengan benar dalam bahasa Inggris.', 'https://www.youtube.com/embed/v4-1_MONZwQ?si=ubiDXvAhIqPBC6HL'),
-(10, 'Adjectives and Conjunctions', 'Adjectives (kata sifat) digunakan untuk mendeskripsikan kata benda, seperti \"big\" (besar), \"small\" (kecil), \"beautiful\" (cantik), dan \"interesting\" (menarik). Conjunctions (kata hubung) digunakan untuk menghubungkan kata, frasa, atau kalimat, seperti \"and\" (dan), \"but\" (tetapi), \"or\" (atau), dan \"because\" (karena). Materi ini akan membantu anak-anak memahami penggunaan kata sifat dan kata hubung dalam kalimat. Melalui contoh dan latihan yang menarik, mereka akan belajar bagaimana mendeskripsikan benda dan menghubungkan ide-ide dengan jelas dan tepat.', 'https://www.youtube.com/embed/Qh7fODBUkpU?si=B7vkzkDnabI4Ilr7');
+(10, 'Adjectives and Conjunctions', 'Adjectives (kata sifat) digunakan untuk mendeskripsikan kata benda, seperti \"big\" (besar), \"small\" (kecil), \"beautiful\" (cantik), dan \"interesting\" (menarik). Conjunctions (kata hubung) digunakan untuk menghubungkan kata, frasa, atau kalimat, seperti \"and\" (dan), \"but\" (tetapi), \"or\" (atau), dan \"because\" (karena). Materi ini akan membantu anak-anak memahami penggunaan kata sifat dan kata hubung dalam kalimat. Melalui contoh dan latihan yang menarik, mereka akan belajar bagaimana mendeskripsikan benda dan menghubungkan ide-ide dengan jelas dan tepat.', 'https://www.youtube.com/embed/Qh7fODBUkpU?si=B7vkzkDnabI4Ilr7'),
+(11, 'Post Test', 'Post Test ini mencakup 10 soal untuk menguji pemahaman anak terhadap berbagai topik bahasa Inggris yang telah dipelajari. Setiap soal dirancang untuk menguji kemampuan anak dalam mengidentifikasi konsep-konsep dasar seperti abjad, kata ganti, kata kerja, kata sifat, kata keterangan tempat, dan penggunaan kata hubung. Selamat mengerjakan post test ini!', '');
 
 -- --------------------------------------------------------
 
@@ -121,16 +122,16 @@ INSERT INTO `quiz` (`id`, `materi_id`, `question`, `type`, `options`, `answer`) 
 (48, 10, 'Choose the correct sentence: \"The cat is small ____ cute.\"', 'multiple_choice', '[{\"option\": \"And\"}, {\"option\": \"But\"}, {\"option\": \"Or\"}]', 'And'),
 (49, 10, 'Choose the correct sentence: \"She is tall ____ not very strong.\"', 'short_answer', NULL, 'But'),
 (50, 10, '\"Big\" and \"small\" are examples of...', 'short_answer', NULL, 'Adjectives'),
-(51, 0, 'What is the first letter in the alphabet?', 'multiple_choice', '[{\"option\": \"A\"}, {\"option\": \"B\"}, {\"option\": \"C\"}]', 'A'),
-(52, 0, 'Which word is a possessive adjective?', 'multiple_choice', '[{\"option\": \"Our\"}, {\"option\": \"Have\"}, {\"option\": \"Beautiful\"}]', 'Our'),
-(53, 0, 'Which sentence is correct: \"__ are going to the park.\"', 'multiple_choice', '[{\"option\": \"We\"}, {\"option\": \"They\"}, {\"option\": \"He\"}]', 'We'),
-(54, 0, 'What does \"can\'t\" mean?', 'multiple_choice', '[{\"option\": \"Able to\"}, {\"option\": \"Not able to\"}, {\"option\": \"Willing to\"}]', 'Not able to'),
-(55, 0, 'Where is the cat in relation to the table?', 'multiple_choice', '[{\"option\": \"In\"}, {\"option\": \"On\"}, {\"option\": \"Under\"}]', 'On'),
-(56, 0, 'What is the opposite of \"this\"?', 'short_answer', NULL, 'Those'),
-(57, 0, 'Complete the sentence: \"She ____ a pet cat.\"', 'short_answer', NULL, 'Has'),
-(58, 0, 'What do you call words that describe people, places, or things?', 'short_answer', NULL, 'Adjectives'),
-(59, 0, 'Complete the sentence: \"They ____ speak English.\"', 'short_answer', NULL, 'Can'),
-(60, 0, 'What is the weather like when it rains?', 'short_answer', NULL, 'Rainy');
+(51, 11, 'What is the first letter in the alphabet?', 'multiple_choice', '[{\"option\": \"A\"}, {\"option\": \"B\"}, {\"option\": \"C\"}]', 'A'),
+(52, 11, 'Which word is a possessive adjective?', 'multiple_choice', '[{\"option\": \"Our\"}, {\"option\": \"Have\"}, {\"option\": \"Beautiful\"}]', 'Our'),
+(53, 11, 'Which sentence is correct: \"__ are going to the park.\"', 'multiple_choice', '[{\"option\": \"We\"}, {\"option\": \"They\"}, {\"option\": \"He\"}]', 'We'),
+(54, 11, 'What does \"can\'t\" mean?', 'multiple_choice', '[{\"option\": \"Able to\"}, {\"option\": \"Not able to\"}, {\"option\": \"Willing to\"}]', 'Not able to'),
+(55, 11, 'Where is the cat in relation to the table?', 'multiple_choice', '[{\"option\": \"In\"}, {\"option\": \"On\"}, {\"option\": \"Under\"}]', 'On'),
+(56, 11, 'What is the opposite of \"this\"?', 'short_answer', NULL, 'Those'),
+(57, 11, 'Complete the sentence: \"She ____ a pet cat.\"', 'short_answer', NULL, 'Has'),
+(58, 11, 'What do you call words that describe people, places, or things?', 'short_answer', NULL, 'Adjectives'),
+(59, 11, 'Complete the sentence: \"They ____ speak English.\"', 'short_answer', NULL, 'Can'),
+(60, 11, 'What is the weather like when it rains?', 'short_answer', NULL, 'Rainy');
 
 --
 -- Indexes for dumped tables
