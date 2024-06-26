@@ -21,6 +21,31 @@
       ></div>
       <div id="materi-quiz-container" class="mt-4"></div>
     </div>
+
+    
+   <!-- Elemen audio yang mereferensikan file backsound.mp3 -->
+   <audio id="backsound" src="backsound.mp3"></audio>
+
+   <!-- Tombol untuk memutar audio -->
+   <button onclick="playAudio()">Play Backsound</button>
+   
+   <!-- Tombol untuk menghentikan audio -->
+   <button onclick="stopAudio()">Stop Backsound</button>
+
+   <script>
+       // Fungsi untuk memutar audio
+       function playAudio() {
+           var audio = document.getElementById("backsound");
+           audio.play();
+       }
+
+       // Fungsi untuk menghentikan audio
+       function stopAudio() {
+           var audio = document.getElementById("backsound");
+           audio.pause();
+           audio.currentTime = 0; // Mengatur ulang waktu pemutaran ke awal
+       }
+   </script>
     <script src="assets/js/game.js"></script>
   </body>
 </html>
