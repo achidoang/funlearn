@@ -2,9 +2,7 @@ header {
   height: 20px;
   /* background: #000; */
 }
-.black {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
+
 nav {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -54,22 +52,11 @@ nav ul li a:hover {
 }
 
 .logo img {
-  width: 120px;
+  width: 80px;
   cursor: pointer;
   transition: all 1s;
 }
 
-a,
-button {
-  float: left;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #2e3d49;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-}
 /* SIDE MENU */
 .menu {
   cursor: pointer;
@@ -122,7 +109,7 @@ button {
 }
 
 .container {
-  margin-top: 110px;
+  margin-top: 60px;
 }
 
 #materi-quiz-container.full-screen {

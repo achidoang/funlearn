@@ -22,7 +22,6 @@
         <ul>
           <li><a href="index.html">Beranda</a></li>
           <li><a class="active" href="materi-quiz.html">Materi</a></li>
-          <li><a href="#about_section">Tentang Kami</a></li>
         </ul>
       </nav>
       <div class="side-menu" id="side-menu">
@@ -34,9 +33,8 @@
           <p>Group 3</p>
         </div>
         <ul>
-          <li><a href="#about_section">About</a></li>
+          <li><a href="index.html">Beranda</a></li>
           <li><a class="active" href="materi-quiz.html">Materi</a></li>
-          <li><a href="#about_section">Tentang Kami</a></li>
         </ul>
       </div>
     </header>
@@ -46,13 +44,14 @@
       <audio id="backsound" src="backsound.mp3"></audio>
 
       <!-- Tombol untuk memutar dan menghentikan audio -->
-      <div class="d-flex justify-content-center my-3 btn-music">
+      <div class="fixed-bottom fixed-left m-3">
         <button
           id="toggleAudioButton"
-          class="btn btn-primary mx-2 btn-custom-width"
+          class="btn btn-primary"
           onclick="toggleAudio()"
         >
-          Play Backsound
+          <img src="./assets/images/icon/play-button.png" alt="Play" />
+          <!-- Ganti dengan ikon sesuai kebutuhan -->
         </button>
       </div>
       <div

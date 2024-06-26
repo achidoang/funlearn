@@ -17,7 +17,7 @@ body {
 }
 
 header {
-  height: 50vh;
+  height: 20px;
   /* background: #000; */
 }
 .black {
@@ -106,7 +106,7 @@ nav ul li a:hover {
   background: #fff;
 }
 .logo img {
-  width: 120px;
+  width: 80px;
   cursor: pointer;
   transition: all 1s;
 }
