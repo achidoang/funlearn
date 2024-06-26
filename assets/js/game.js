@@ -1,85 +1,139 @@
-const question = document.getElementById("question");
-const choices = Array.from(document.getElementsByClassName("choice-text"));
-const questionCounterText = document.getElementById("questionCounter");
-const scoreText = document.getElementById("score");
-
-let currentQuestion = {};
-let acceptingAnswers = false;
+let currentQuestionIndex = 0;
 let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
+let questions = [];
+let currentQuiz = [];
+let dataMateri = [];
 
-const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 10;
+fetch("data/getData.php")
+  .then((response) => response.json())
+  .then((data) => {
+    dataMateri = data;
+    const buttonsContainer = document.getElementById(
+      "materi-buttons-container"
+    );
 
-fetch("http://localhost/funlearn/data/getData.php")
-  .then((response) => {
-    return response.json();
+    // Generate buttons for each materi
+    data.forEach((materi, index) => {
+      const button = document.createElement("button");
+      button.innerText = materi.title;
+      button.onclick = () => displayMateri(materi.id);
+      buttonsContainer.appendChild(button);
+    });
+
+    // Generate button for posttest
+    const posttestButton = document.createElement("button");
+    posttestButton.innerText = "Post Test";
+    posttestButton.onclick = () => startQuiz(0, 10); // 10 questions for posttest
+    buttonsContainer.appendChild(posttestButton);
   })
-  .then((loadedQuestions) => {
-    // Assuming you want to use the first materi's quiz for the game
-    questions = loadedQuestions[0].quiz;
-    startGame();
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+  .catch((error) => console.error("Error fetching data:", error));
 
-startGame = () => {
-  questionCounter = 0;
+function displayMateri(materiId) {
+  const container = document.getElementById("materi-quiz-container");
+  container.innerHTML = ""; // Clear previous content
+
+  const materi = dataMateri.find((m) => m.id === materiId);
+  if (materi) {
+    const materiDiv = document.createElement("div");
+    materiDiv.classList.add("materi");
+    materiDiv.innerHTML = `
+            <h2>${materi.title}</h2>
+            ${
+              materi.video
+                ? `<div class="video-container"><iframe src="${materi.video}" frameborder="0" allowfullscreen></iframe></div>`
+                : ""
+            }
+            <p>${materi.description}</p>
+        `;
+
+    if (materi.quiz.length > 0) {
+      const quizButton = document.createElement("button");
+      quizButton.innerText = "Mulai Quiz";
+      quizButton.onclick = () => startQuiz(materi.id, 5); // 5 questions per materi
+      materiDiv.appendChild(quizButton);
+    }
+
+    container.appendChild(materiDiv);
+  }
+}
+
+function startQuiz(materiId, numberOfQuestions) {
+  currentQuestionIndex = 0;
   score = 0;
-  availableQuestions = [...questions];
-  getNewQuestion();
-};
+  questions = [];
 
-getNewQuestion = () => {
-  if (
-    questionCounter >= availableQuestions.length ||
-    questionCounter >= MAX_QUESTIONS
-  ) {
-    //go to the end page
-    return window.location.assign("/end.html");
+  if (materiId === 0) {
+    // Post test, get first 10 questions from the first materi
+    questions = dataMateri[0].quiz.slice(0, numberOfQuestions);
+  } else {
+    const materi = dataMateri.find((m) => m.id === materiId);
+    if (materi && materi.quiz.length > 0) {
+      questions = materi.quiz.slice(0, numberOfQuestions);
+    }
   }
 
-  currentQuestion = availableQuestions[questionCounter];
-  questionCounter++;
-  questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`;
+  if (questions.length > 0) {
+    displayQuestion();
+  }
+}
 
-  question.innerText = currentQuestion.question;
+function displayQuestion() {
+  const container = document.getElementById("materi-quiz-container");
+  container.innerHTML = ""; // Clear previous content
 
-  choices.forEach((choice, index) => {
-    choice.innerText = currentQuestion.options[index];
-  });
+  const question = questions[currentQuestionIndex];
+  const questionDiv = document.createElement("div");
+  questionDiv.classList.add("quiz");
 
-  acceptingAnswers = true;
-};
+  if (question.type === "multiple_choice") {
+    questionDiv.innerHTML = `
+            <p class="question">${question.question}</p>
+            <ul class="options">
+                ${question.options
+                  .map(
+                    (option) =>
+                      `<li><button onclick="handleAnswer('${option.option}')">${option.option}</button></li>`
+                  )
+                  .join("")}
+            </ul>
+        `;
+  } else if (question.type === "short_answer") {
+    questionDiv.innerHTML = `
+            <p class="question">${question.question}</p>
+            <input type="text" id="shortAnswer" placeholder="Your answer"/>
+            <button onclick="handleAnswer(document.getElementById('shortAnswer').value)">Submit</button>
+        `;
+  }
 
-choices.forEach((choice) => {
-  choice.addEventListener("click", (e) => {
-    if (!acceptingAnswers) return;
+  const scoreDiv = document.createElement("div");
+  scoreDiv.classList.add("score");
+  scoreDiv.innerHTML = `<p>Score: ${score}</p><p>Question: ${
+    currentQuestionIndex + 1
+  } of ${questions.length}</p>`;
 
-    acceptingAnswers = false;
-    const selectedChoice = e.target;
-    const selectedAnswer = selectedChoice.innerText;
+  container.appendChild(scoreDiv);
+  container.appendChild(questionDiv);
+}
 
-    const classToApply =
-      selectedAnswer === currentQuestion.answer ? "correct" : "incorrect";
+function handleAnswer(userAnswer) {
+  const question = questions[currentQuestionIndex];
 
-    if (classToApply === "correct") {
-      incrementScore(CORRECT_BONUS);
-    }
-    selectedChoice.parentElement.classList.add(classToApply);
+  if (
+    userAnswer.trim().toLowerCase() === question.answer.trim().toLowerCase()
+  ) {
+    score += 10;
+  }
 
-    setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply);
-      getNewQuestion();
-    }, 1000);
-  });
-});
+  currentQuestionIndex++;
 
-incrementScore = (num) => {
-  score += num;
-  scoreText.innerText = score;
-};
+  if (currentQuestionIndex < questions.length) {
+    displayQuestion();
+  } else {
+    displayResults();
+  }
+}
 
-startGame();
+function displayResults() {
+  const container = document.getElementById("materi-quiz-container");
+  container.innerHTML = `<h2>Your final score is: ${score}</h2>`;
+}

@@ -1,61 +1,53 @@
 <?php
-// Koneksi ke database
 include "connect.php";
 
-// Query untuk mengambil data materi dan quiz
-$query = "SELECT m.id, m.title AS materi_title, m.description AS materi_description, 
-                 q.question AS quiz_question, q.option1 AS option1, q.option2 AS option2, q.option3 AS option3, q.answer AS correct_answer
-          FROM Materi m
-          LEFT JOIN Quiz q ON m.id = q.materi_id
-          ORDER BY m.id, q.id";
+$sql = "SELECT m.id AS materi_id, m.title AS materi_title, m.description AS materi_description, m.video_url AS materi_video, 
+               q.id AS quiz_id, q.question AS quiz_question, q.type AS quiz_type, q.options AS quiz_options, q.answer AS quiz_answer
+        FROM Materi m
+        LEFT JOIN Quiz q ON m.id = q.materi_id
+        ORDER BY m.id, q.id";
 
-$result = $conn->query($query);
+$result = $conn->query($sql);
 
-// Array untuk menyimpan hasil query
-$data = array();
-
-// Ambil hasil query dan format ke dalam array
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $materi_id = $row['id'];
-        $materi_title = $row['materi_title'];
-        $materi_description = $row['materi_description'];
-        $quiz_question = $row['quiz_question'];
-        $option1 = $row['option1'];
-        $option2 = $row['option2'];
-        $option3 = $row['option3'];
-        $correct_answer = $row['correct_answer'];
+    $data = array();
+    $currentMateriId = null;
+    $materi = null;
 
-        // Tambahkan data materi jika belum ada
-        if (!isset($data[$materi_id])) {
-            $data[$materi_id] = array(
-                'id' => $materi_id,
-                'title' => $materi_title,
-                'description' => $materi_description,
+    while ($row = $result->fetch_assoc()) {
+        if ($row['materi_id'] !== $currentMateriId) {
+            if ($materi !== null) {
+                $data[] = $materi;
+            }
+            $currentMateriId = $row['materi_id'];
+            $materi = array(
+                'id' => $row['materi_id'],
+                'title' => $row['materi_title'],
+                'description' => $row['materi_description'],
+                'video' => $row['materi_video'],
                 'quiz' => array()
             );
         }
 
-        // Tambahkan pertanyaan quiz ke dalam array quiz
-        $data[$materi_id]['quiz'][] = array(
-            'question' => $quiz_question,
-            'options' => array(
-                $option1,
-                $option2,
-                $option3
-            ),
-            'answer' => $correct_answer
-        );
+        if ($row['quiz_id'] !== null) {
+            $quizItem = array(
+                'id' => $row['quiz_id'],
+                'question' => $row['quiz_question'],
+                'type' => $row['quiz_type'],
+                'options' => json_decode($row['quiz_options'], true),
+                'answer' => $row['quiz_answer']
+            );
+            $materi['quiz'][] = $quizItem;
+        }
     }
+    if ($materi !== null) {
+        $data[] = $materi;
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data, JSON_PRETTY_PRINT);
+} else {
+    echo json_encode(array('message' => 'No results found'));
 }
-
-// Tutup koneksi database
 $conn->close();
-
-// Encode data ke dalam JSON dengan JSON_PRETTY_PRINT untuk memudahkan pembacaan
-$json_data = json_encode(array_values($data), JSON_PRETTY_PRINT);
-
-// Kirim data JSON ke frontend
-header('Content-Type: application/json');
-echo $json_data;
 ?>
