@@ -44,13 +44,6 @@ fetch("data/getData.php")
       const colDiv = createMateriButton(materi); // Membuat tombol untuk setiap materi
       buttonsContainer.appendChild(colDiv); // Menambahkan tombol ke dalam kontainer
     });
-
-    // Menambahkan tombol posttest
-    const posttestButton = document.createElement("button");
-    posttestButton.classList.add("btn", "btn-danger", "w-100"); // Menambahkan kelas tombol Bootstrap
-    posttestButton.innerText = "Post Test"; // Menambahkan teks tombol
-    posttestButton.onclick = () => startQuiz(0, 10); // Menambahkan fungsi klik untuk memulai kuis
-    buttonsContainer.appendChild(posttestButton); // Menambahkan tombol ke dalam kontainer
   })
   .catch((error) => console.error("Error fetching data:", error)); // Menangani kesalahan saat mengambil data
 
@@ -58,6 +51,9 @@ fetch("data/getData.php")
 function displayMateriOptions(materiId) {
   const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
   container.innerHTML = ""; // Menghapus konten sebelumnya
+
+  // Menambahkan kelas full-screen
+  container.classList.add("full-screen");
 
   const materi = dataMateri.find((m) => m.id === materiId); // Menemukan materi berdasarkan id
   if (materi) {
@@ -86,7 +82,10 @@ function displayMateriOptions(materiId) {
     const backButton = document.createElement("button");
     backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
     backButton.innerText = "Back"; // Menambahkan teks tombol
-    backButton.onclick = () => displayMateriButtons(); // Menambahkan fungsi klik untuk kembali ke daftar materi
+    backButton.onclick = () => {
+      container.classList.remove("full-screen"); // Menghapus kelas full-screen saat kembali ke daftar materi
+      displayMateriButtons();
+    }; // Menambahkan fungsi klik untuk kembali ke daftar materi
     materiDiv.appendChild(backButton); // Menambahkan tombol kembali ke div materi
 
     container.appendChild(materiDiv); // Menambahkan div materi ke kontainer
@@ -114,13 +113,6 @@ function displayMateriButtons() {
     const colDiv = createMateriButton(materi); // Membuat tombol untuk setiap materi
     buttonsContainer.appendChild(colDiv); // Menambahkan tombol ke dalam kontainer
   });
-
-  // Membuat tombol untuk posttest (diasumsikan setelah semua materi)
-  const posttestButton = document.createElement("button");
-  posttestButton.classList.add("btn", "btn-danger", "w-100"); // Menambahkan kelas tombol Bootstrap
-  posttestButton.innerText = "Post Test"; // Menambahkan teks tombol
-  posttestButton.onclick = () => startQuiz(0, 10); // Menambahkan fungsi klik untuk memulai kuis
-  buttonsContainer.appendChild(posttestButton); // Menambahkan tombol ke dalam kontainer
 }
 
 // Fungsi untuk menampilkan video materi
@@ -233,7 +225,10 @@ function displayResults() {
   const backButton = document.createElement("button");
   backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
   backButton.innerText = "Back to Materi List"; // Menambahkan teks tombol
-  backButton.onclick = () => displayMateriButtons(); // Menambahkan fungsi klik untuk kembali ke daftar materi
+  backButton.onclick = () => {
+    container.classList.remove("full-screen"); // Menghapus kelas full-screen saat kembali ke daftar materi
+    displayMateriButtons();
+  }; // Menambahkan fungsi klik untuk kembali ke daftar materi
 
   container.appendChild(backButton); // Menambahkan tombol kembali ke kontainer
 }
