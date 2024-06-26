@@ -13,8 +13,48 @@
   </head>
 
   <body>
-    <div class="container mt-4">
+    <!-- Navigation Bar -->
+    <header id="header">
+      <nav>
+        <div class="logo">
+          <img src="./assets/images/icon/Logo.png" alt="logo" />
+        </div>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a class="active" href="materi-quiz.html">Materi</a></li>
+          <li><a href="#about_section">Tentang Kami</a></li>
+        </ul>
+      </nav>
+      <div class="side-menu" id="side-menu">
+        <div class="close" onclick="sideMenu(1)">
+          <img src="./assets/images/icon/close.png" alt="" />
+        </div>
+        <div class="user">
+          <img src="images/creator/person.png" alt="Username" />
+          <p>Group 3</p>
+        </div>
+        <ul>
+          <li><a href="#about_section">About</a></li>
+          <li><a class="active" href="materi-quiz.html">Materi</a></li>
+          <li><a href="#about_section">Tentang Kami</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
       <h1 class="text-center">Materi dan Quiz</h1>
+      <!-- Elemen audio yang mereferensikan file backsound.mp3 -->
+      <audio id="backsound" src="backsound.mp3"></audio>
+
+      <!-- Tombol untuk memutar dan menghentikan audio -->
+      <div class="d-flex justify-content-center my-3 btn-music">
+        <button
+          id="toggleAudioButton"
+          class="btn btn-primary mx-2 btn-custom-width"
+          onclick="toggleAudio()"
+        >
+          Play Backsound
+        </button>
+      </div>
       <div
         class="row justify-content-center"
         id="materi-buttons-container"
@@ -22,30 +62,6 @@
       <div id="materi-quiz-container" class="mt-4"></div>
     </div>
 
-    
-   <!-- Elemen audio yang mereferensikan file backsound.mp3 -->
-   <audio id="backsound" src="backsound.mp3"></audio>
-
-   <!-- Tombol untuk memutar audio -->
-   <button onclick="playAudio()">Play Backsound</button>
-   
-   <!-- Tombol untuk menghentikan audio -->
-   <button onclick="stopAudio()">Stop Backsound</button>
-
-   <script>
-       // Fungsi untuk memutar audio
-       function playAudio() {
-           var audio = document.getElementById("backsound");
-           audio.play();
-       }
-
-       // Fungsi untuk menghentikan audio
-       function stopAudio() {
-           var audio = document.getElementById("backsound");
-           audio.pause();
-           audio.currentTime = 0; // Mengatur ulang waktu pemutaran ke awal
-       }
-   </script>
     <script src="assets/js/game.js"></script>
   </body>
 </html>

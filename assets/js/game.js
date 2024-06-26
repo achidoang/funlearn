@@ -105,7 +105,6 @@ function createButton(text, className, onClickHandler) {
   return button;
 }
 
-
 // Fungsi utilitas untuk membuat tombol dengan kelas dan fungsi klik
 function createButton(text, className, onClickHandler) {
   const button = document.createElement("button");
@@ -114,7 +113,6 @@ function createButton(text, className, onClickHandler) {
   button.onclick = onClickHandler;
   return button;
 }
-
 
 // Fungsi untuk menampilkan tombol-tombol materi
 function displayMateriButtons() {
@@ -231,7 +229,6 @@ function displayQuestion() {
   container.appendChild(questionDiv); // Menambahkan div pertanyaan ke kontainer
 }
 
-
 // Fungsi untuk menangani jawaban pengguna
 function handleAnswer(userAnswer) {
   const question = questions[currentQuestionIndex]; // Mengambil pertanyaan saat ini
@@ -265,4 +262,22 @@ function displayResults() {
   }; // Menambahkan fungsi klik untuk kembali ke daftar materi
 
   container.appendChild(backButton); // Menambahkan tombol kembali ke kontainer
+}
+
+// Fungsi untuk memutar atau menghentikan audio
+function toggleAudio() {
+  var audio = document.getElementById("backsound");
+  var button = document.getElementById("toggleAudioButton");
+
+  if (audio.paused) {
+    audio.play();
+    button.innerText = "Pause Backsound";
+    button.classList.remove("btn-primary");
+    button.classList.add("btn-warning");
+  } else {
+    audio.pause();
+    button.innerText = "Play Backsound";
+    button.classList.remove("btn-warning");
+    button.classList.add("btn-primary");
+  }
 }
