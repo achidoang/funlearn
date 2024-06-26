@@ -15,9 +15,9 @@ function createMateriButton(materi) {
   const image = document.createElement("img"); // Membuat elemen gambar
   image.src = `assets/images/gambar${materi.id}.png`; // Mengatur sumber gambar berdasarkan id materi
   image.alt = materi.title; // Menambahkan teks alternatif untuk aksesibilitas
-  image.classList.add("img-fluid", "rounded-circle", "mb-2"); // Menambahkan kelas Bootstrap untuk gambar
+  image.classList.add("img-fluid", "mb-2"); // Menambahkan kelas Bootstrap untuk gambar
 
-  const title = document.createElement("p"); // Membuat elemen paragraf
+  const title = document.createElement("h4"); // Membuat elemen paragraf
   title.classList.add("text-center", "mb-0"); // Menambahkan kelas Bootstrap
   title.innerText = materi.title; // Menambahkan judul materi
 
