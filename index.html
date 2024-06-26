@@ -1,97 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link rel="shortcut icon" type="png" href="images/icon/favicon.png">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Comaptible" content="IE=edge">
-	<title>FunLearn</title>
-	<meta name="desciption" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-	<script type="text/javascript" src="script.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	<script>
-		$(window).on('scroll', function(){
-  			if($(window).scrollTop()){
-  			  $('nav').addClass('black');
- 			 }else {
- 		   $('nav').removeClass('black');
- 		 }
-		})
-	</script>
-</head>
-<body>
-<!-- Navigation Bar -->
-	<header id="header">
-		<nav>
-			<div class="logo"><img src="./assets/images/icon/Logo.png" alt="logo"></div>
-			<ul>
-				<li><a class="active" href="">Beranda</a></li>
-				<li><a href="#">Materi</a></li>
-				<li><a href="./quiz/quiz.html">Quiz</a></li>
-				<!-- <li><a href="#team_section">Team</a></li> -->
-				<li><a href="#about_section">Tentang Kami</a></li>
-				<!-- <li><a href="#contactus_section">Kontak</a></li> -->
-			</ul>
-			<!-- <div class="srch"><input type="text" class="search" placeholder="Search here..."><img src="images/icon/search.png" alt="search" onclick=slide()></div>
+  <head>
+    <link rel="shortcut icon" type="png" href="images/icon/favicon.png" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Comaptible" content="IE=edge" />
+    <title>FunLearn</title>
+    <meta name="desciption" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+      $(window).on("scroll", function () {
+        if ($(window).scrollTop()) {
+          $("nav").addClass("black");
+        } else {
+          $("nav").removeClass("black");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header id="header">
+      <nav>
+        <div class="logo">
+          <img src="./assets/images/icon/Logo.png" alt="logo" />
+        </div>
+        <ul>
+          <li><a class="active" href="">Beranda</a></li>
+          <li><a href="materi-quiz.html">Materi</a></li>
+          <li><a href="./quiz/quiz.html">Quiz</a></li>
+          <!-- <li><a href="#team_section">Team</a></li> -->
+          <li><a href="#about_section">Tentang Kami</a></li>
+          <!-- <li><a href="#contactus_section">Kontak</a></li> -->
+        </ul>
+        <!-- <div class="srch"><input type="text" class="search" placeholder="Search here..."><img src="images/icon/search.png" alt="search" onclick=slide()></div>
 			<a class="get-started" href="login.html">Get Started</a>
 			<img src="images/icon/menu.png" class="menu" onclick="sideMenu(0)" alt="menu"> -->
-		</nav>
-		<div class="head-container">
-			<div class="quote">
-				<p>Belajar Bahasa Inggris dengan Mudah dan Menyenangkan</p>
-				<h5>Materi dan quiz interaktif untuk anak kelas 3 SD</h5>
-				<div class="play-button" onclick="window.location.href='quiz-dan-materi.html'">
-					Mulai Belajar
-				</div>
-			</div>
-			<div class="svg-image">
-				<img src="./assets/images/extra/english.png" alt="png">
-			</div>
-		</div>
-		<div class="side-menu" id="side-menu">
-			<div class="close" onclick="sideMenu(1)"><img src="./assets/images/icon/close.png" alt=""></div>
-			<div class="user">
-				<img src="images/creator/person.png" alt="Username">
-				<p>Group 3</p>
-			</div>
-			<ul>
-				<li><a href="#about_section">About</a></li>
-				<li><a href="#">Materi</a></li>
-				<li><a href="./quiz/quiz.html">Quiz</a></li>
-				<!-- <li><a href="#contactus_section">Contact</a></li>
+      </nav>
+      <div class="head-container">
+        <div class="quote">
+          <p>Belajar Bahasa Inggris dengan Mudah dan Menyenangkan</p>
+          <h5>Materi dan quiz interaktif untuk anak kelas 3 SD</h5>
+          <div
+            class="play-button"
+            onclick="window.location.href='materi-quiz.html'"
+          >
+            Mulai Belajar
+          </div>
+        </div>
+        <div class="svg-image">
+          <img src="./assets/images/extra/english.png" alt="png" />
+        </div>
+      </div>
+      <div class="side-menu" id="side-menu">
+        <div class="close" onclick="sideMenu(1)">
+          <img src="./assets/images/icon/close.png" alt="" />
+        </div>
+        <div class="user">
+          <img src="images/creator/person.png" alt="Username" />
+          <p>Group 3</p>
+        </div>
+        <ul>
+          <li><a href="#about_section">About</a></li>
+          <li><a href="materi-quiz.html">Materi</a></li>
+          <li><a href="./quiz/quiz.html">Quiz</a></li>
+          <!-- <li><a href="#contactus_section">Contact</a></li>
 				<li><a href="#feedBACK">Feedback</a></li> -->
-			</ul>
-		</div>
-	</header>
+        </ul>
+      </div>
+    </header>
 
-	
-<!-- ABOUT -->
-	<div class="diffSection" id="about_section">
-		<center><p style="font-size: 50px; padding: 100px">About</p></center>
-		<div class="about-content">
-				<div class="side-image">
-					<img class="sideImage" src="./assets/images/icon/Logo.png">
-				</div>
-				<div class="side-text">
-					<h2>What you think about us ?</h2>
-					<p>FunLearn adalah aplikasi pembelajaran bahasa Inggris yang dirancang khusus untuk siswa kelas 3 SD, menawarkan pengalaman belajar yang seru dan interaktif. Dengan berbagai kuis menarik, anak-anak dapat mengasah kemampuan bahasa Inggris mereka sambil bermain dan menikmati proses belajar. Setiap kuis dirancang untuk memperkuat pemahaman kosakata, tata bahasa, serta kemampuan mendengarkan dan berbicara, sehingga anak-anak dapat belajar dengan cara yang menyenangkan dan efektif. Eng-Learn berkomitmen untuk menyediakan alat bantu belajar yang inovatif dan menyenangkan, mendukung perkembangan bahasa Inggris anak sejak dini.</p>
-				</div>
-		</div>
-	</div>
+    <!-- ABOUT -->
+    <div class="diffSection" id="about_section">
+      <center><p style="font-size: 50px; padding: 100px">About</p></center>
+      <div class="about-content">
+        <div class="side-image">
+          <img class="sideImage" src="./assets/images/icon/Logo.png" />
+        </div>
+        <div class="side-text">
+          <h2>What you think about us ?</h2>
+          <p>
+            FunLearn adalah aplikasi pembelajaran bahasa Inggris yang dirancang
+            khusus untuk siswa kelas 3 SD, menawarkan pengalaman belajar yang
+            seru dan interaktif. Dengan berbagai kuis menarik, anak-anak dapat
+            mengasah kemampuan bahasa Inggris mereka sambil bermain dan
+            menikmati proses belajar. Setiap kuis dirancang untuk memperkuat
+            pemahaman kosakata, tata bahasa, serta kemampuan mendengarkan dan
+            berbicara, sehingga anak-anak dapat belajar dengan cara yang
+            menyenangkan dan efektif. Eng-Learn berkomitmen untuk menyediakan
+            alat bantu belajar yang inovatif dan menyenangkan, mendukung
+            perkembangan bahasa Inggris anak sejak dini.
+          </p>
+        </div>
+      </div>
+    </div>
 
-<!-- SERVICES -->
-	<div class="service-swipe">
-		<div class="diffSection" id="services_section">
-		<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Apa saja yang ada di FunLearn?</p></center>
-		</div>
-		<a href="subjects/computer_courses.html"><div class="s-card"><img src="./assets/images/icon/computer-courses.png"><p>Materi Pembelajaran Gratis</p></div></a>
-		<a href="./quiz/quiz.html"><div class="s-card"><img src="./assets/images/icon/brainbooster.png"><p>Kuis</p></div></a>
-	</div>
+    <!-- SERVICES -->
+    <div class="service-swipe">
+      <div class="diffSection" id="services_section">
+        <center>
+          <p
+            style="
+              font-size: 50px;
+              padding: 100px;
+              padding-bottom: 40px;
+              color: #fff;
+            "
+          >
+            Apa saja yang ada di FunLearn?
+          </p>
+        </center>
+      </div>
+      <a href="subjects/computer_courses.html"
+        ><div class="s-card">
+          <img src="./assets/images/icon/computer-courses.png" />
+          <p>Materi Pembelajaran Gratis</p>
+        </div></a
+      >
+      <a href="materi-quiz.html"
+        ><div class="s-card">
+          <img src="./assets/images/icon/brainbooster.png" />
+          <p>Kuis</p>
+        </div></a
+      >
+    </div>
 
-
-<!-- TEAM -->
-	<!-- <div class="diffSection" id="team_section">
+    <!-- TEAM -->
+    <!-- <div class="diffSection" id="team_section">
 		<center><p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px;">We're the Creators</p></center>
 		<div class="totalcard">
 			<div class="card">
@@ -205,15 +242,15 @@
 		</div>
 	</div> -->
 
+    <!-- Reviews by Students -->
+    <div id="makeitfull">
+      <a href="#review_section"
+        ><img src="./assets/images/icon/makeitfull.png"
+      /></a>
+    </div>
 
-<!-- Reviews by Students -->
-<div id="makeitfull">
-	<a href="#review_section"><img src="./assets/images/icon/makeitfull.png"></a>
-</div>
-
-
-<!-- FEEDBACK -->
-	<!-- <div class="title2" id="feedBACK">
+    <!-- FEEDBACK -->
+    <!-- <div class="title2" id="feedBACK">
 		<span>Give Feedback</span>
 		<div class="shortdesc2">
 			<p>Please share your valuable feedback to us</p>
@@ -234,27 +271,56 @@
 		</div>
 	</div> -->
 
-<!-- Sliding Information -->
-	<marquee style="background: linear-gradient(to right, #FA4B37, #DF2771); margin-top: 50px;" direction="left" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="20"><div class="marqu">“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.” “Your attitude, not your aptitude, will determine your altitude.” “If you think education is expensive, try ignorance.” “The only person who is educated is the one who has learned how to learn …and change.”</div></marquee>
+    <!-- Sliding Information -->
+    <marquee
+      style="
+        background: linear-gradient(to right, #fa4b37, #df2771);
+        margin-top: 50px;
+      "
+      direction="left"
+      onmouseover="this.stop()"
+      onmouseout="this.start()"
+      scrollamount="20"
+      ><div class="marqu">
+        “Education is the passport to the future, for tomorrow belongs to those
+        who prepare for it today.” “Your attitude, not your aptitude, will
+        determine your altitude.” “If you think education is expensive, try
+        ignorance.” “The only person who is educated is the one who has learned
+        how to learn …and change.”
+      </div></marquee
+    >
 
-<!-- FOOTER -->
-	<footer>
-		<div class="footer-container">
-			<div class="left-col">
-				<img src="./assets/images/icon/just-Logo.png" style="width: 200px;">
-				<div class="logo"></div>
-				<div class="social-media">
-					<a href="#"><img src="./assets/images/icon/fb.png"></a>
-					<a href="#"><img src="./assets/images/icon/insta.png"></a>
-					<a href="#"><img src="./assets/images/icon/tt.png"></a>
-					<a href="#"><img src="./assets/images/icon/ytube.png"></a>
-					<a href="#"><img src="./assets/images/icon/linkedin.png"></a>
-				</div><br><br>
-				<p class="rights-text">Copyright © 2021 Created By Group 3 Multimedia System</p>
-				<br><p><img src="./assets/images/icon/location.png"> Universitas Muhammadiyah Surakarta<br></p><br>
-				<p><img src="./assets/images/icon/phone.png"> +62-1234-567-890<br><img src="./assets/images/icon/mail.png">&nbsp; kelompok3@gmail.com</p>
-			</div>
-			<!-- <div class="right-col">
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-container">
+        <div class="left-col">
+          <img src="./assets/images/icon/just-Logo.png" style="width: 200px" />
+          <div class="logo"></div>
+          <div class="social-media">
+            <a href="#"><img src="./assets/images/icon/fb.png" /></a>
+            <a href="#"><img src="./assets/images/icon/insta.png" /></a>
+            <a href="#"><img src="./assets/images/icon/tt.png" /></a>
+            <a href="#"><img src="./assets/images/icon/ytube.png" /></a>
+            <a href="#"><img src="./assets/images/icon/linkedin.png" /></a>
+          </div>
+          <br /><br />
+          <p class="rights-text">
+            Copyright © 2021 Created By Group 3 Multimedia System
+          </p>
+          <br />
+          <p>
+            <img src="./assets/images/icon/location.png" /> Universitas
+            Muhammadiyah Surakarta<br />
+          </p>
+          <br />
+          <p>
+            <img src="./assets/images/icon/phone.png" />
+            +62-1234-567-890<br /><img
+              src="./assets/images/icon/mail.png"
+            />&nbsp; kelompok3@gmail.com
+          </p>
+        </div>
+        <!-- <div class="right-col">
 				<h1 style="color: #fff">Our Newsletter</h1>
 				<div class="border"></div><br>
 				<p>Enter Your Email to get our News and updates.</p>
@@ -263,8 +329,7 @@
 					<input class="btn" type="submit" value="Submit">
 				</form>
 			</div> -->
-		</div>
-	</footer>
-
-</body>
+      </div>
+    </footer>
+  </body>
 </html>

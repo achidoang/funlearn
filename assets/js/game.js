@@ -1,174 +1,180 @@
-let currentQuestionIndex = 0;
-let score = 0;
-let questions = [];
-let dataMateri = [];
+// Inisialisasi variabel
+let currentQuestionIndex = 0; // Menyimpan indeks pertanyaan saat ini
+let score = 0; // Menyimpan skor pengguna
+let questions = []; // Array untuk menyimpan pertanyaan-pertanyaan
+let dataMateri = []; // Array untuk menyimpan data materi
 
-// Function to create Bootstrap styled buttons with images for each materi
+// Fungsi untuk membuat tombol dengan gaya Bootstrap dan gambar untuk setiap materi
 function createMateriButton(materi) {
-  const colDiv = document.createElement("div");
-  colDiv.classList.add("col-md-4", "mb-4"); // Bootstrap grid column classes
+  const colDiv = document.createElement("div"); // Membuat elemen div
+  colDiv.classList.add("col-md-4", "mb-4"); // Menambahkan kelas grid Bootstrap
 
-  const button = document.createElement("button");
-  button.classList.add("btn", "btn-primary", "w-100");
+  const button = document.createElement("button"); // Membuat elemen tombol
+  button.classList.add("btn", "btn-primary", "w-100"); // Menambahkan kelas tombol Bootstrap
 
-  const image = document.createElement("img");
-  image.src = `assets/images/gambar${materi.id}.png`; // Assuming materi.id corresponds to the image file number
-  image.alt = materi.title; // Set alt text for accessibility
-  image.classList.add("img-fluid", "rounded-circle", "mb-2");
+  const image = document.createElement("img"); // Membuat elemen gambar
+  image.src = `assets/images/gambar${materi.id}.png`; // Mengatur sumber gambar berdasarkan id materi
+  image.alt = materi.title; // Menambahkan teks alternatif untuk aksesibilitas
+  image.classList.add("img-fluid", "rounded-circle", "mb-2"); // Menambahkan kelas Bootstrap untuk gambar
 
-  const title = document.createElement("p");
-  title.classList.add("text-center", "mb-0");
-  title.innerText = materi.title;
+  const title = document.createElement("p"); // Membuat elemen paragraf
+  title.classList.add("text-center", "mb-0"); // Menambahkan kelas Bootstrap
+  title.innerText = materi.title; // Menambahkan judul materi
 
-  button.appendChild(image);
-  button.appendChild(title);
+  button.appendChild(image); // Menambahkan gambar ke tombol
+  button.appendChild(title); // Menambahkan judul ke tombol
 
-  button.onclick = () => displayMateriOptions(materi.id);
+  button.onclick = () => displayMateriOptions(materi.id); // Menambahkan fungsi klik untuk menampilkan opsi materi
 
-  colDiv.appendChild(button);
+  colDiv.appendChild(button); // Menambahkan tombol ke dalam div kolom
 
-  return colDiv;
+  return colDiv; // Mengembalikan div kolom
 }
 
-// Update fetch to include image data
+// Mengambil data dari server dan membuat tombol-tombol materi
 fetch("data/getData.php")
-  .then((response) => response.json())
+  .then((response) => response.json()) // Mengubah respon menjadi JSON
   .then((data) => {
-    dataMateri = data;
+    dataMateri = data; // Menyimpan data ke dalam variabel dataMateri
     const buttonsContainer = document.getElementById(
       "materi-buttons-container"
-    );
+    ); // Mendapatkan elemen kontainer tombol
 
     data.forEach((materi, index) => {
-      const colDiv = createMateriButton(materi);
-      buttonsContainer.appendChild(colDiv);
+      const colDiv = createMateriButton(materi); // Membuat tombol untuk setiap materi
+      buttonsContainer.appendChild(colDiv); // Menambahkan tombol ke dalam kontainer
     });
 
-    // Add posttest button
+    // Menambahkan tombol posttest
     const posttestButton = document.createElement("button");
-    posttestButton.classList.add("btn", "btn-danger", "w-100");
-    posttestButton.innerText = "Post Test";
-    posttestButton.onclick = () => startQuiz(0, 10); // 10 questions for posttest
-    buttonsContainer.appendChild(posttestButton);
+    posttestButton.classList.add("btn", "btn-danger", "w-100"); // Menambahkan kelas tombol Bootstrap
+    posttestButton.innerText = "Post Test"; // Menambahkan teks tombol
+    posttestButton.onclick = () => startQuiz(0, 10); // Menambahkan fungsi klik untuk memulai kuis
+    buttonsContainer.appendChild(posttestButton); // Menambahkan tombol ke dalam kontainer
   })
-  .catch((error) => console.error("Error fetching data:", error));
+  .catch((error) => console.error("Error fetching data:", error)); // Menangani kesalahan saat mengambil data
 
+// Fungsi untuk menampilkan opsi materi
 function displayMateriOptions(materiId) {
-  const container = document.getElementById("materi-quiz-container");
-  container.inneFgarHTML = ""; // Clear previous content
+  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  container.innerHTML = ""; // Menghapus konten sebelumnya
 
-  const materi = dataMateri.find((m) => m.id === materiId);
+  const materi = dataMateri.find((m) => m.id === materiId); // Menemukan materi berdasarkan id
   if (materi) {
-    const materiDiv = document.createElement("div");
-    materiDiv.classList.add("materi", "border", "p-3", "mb-3");
+    const materiDiv = document.createElement("div"); // Membuat elemen div untuk materi
+    materiDiv.classList.add("materi", "border", "p-3", "mb-3"); // Menambahkan kelas Bootstrap
     materiDiv.innerHTML = `
             <h2>${materi.title}</h2>
             <p>${materi.description}</p>
         `;
 
-    // Create buttons for video and quiz
+    // Membuat tombol untuk video dan kuis
     if (materi.video) {
       const videoButton = document.createElement("button");
-      videoButton.classList.add("btn", "btn-secondary", "m-2");
-      videoButton.innerText = "Nonton Video";
-      videoButton.onclick = () => displayVideo(materiId);
-      materiDiv.appendChild(videoButton);
+      videoButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
+      videoButton.innerText = "Nonton Video"; // Menambahkan teks tombol
+      videoButton.onclick = () => displayVideo(materiId); // Menambahkan fungsi klik untuk menampilkan video
+      materiDiv.appendChild(videoButton); // Menambahkan tombol video ke div materi
     }
 
     const quizButton = document.createElement("button");
-    quizButton.classList.add("btn", "btn-warning", "m-2");
-    quizButton.innerText = "Kerjakan Kuiz";
-    quizButton.onclick = () => startQuiz(materiId, 5); // 5 questions per materi
-    materiDiv.appendChild(quizButton);
+    quizButton.classList.add("btn", "btn-warning", "m-2"); // Menambahkan kelas tombol Bootstrap
+    quizButton.innerText = "Kerjakan Kuiz"; // Menambahkan teks tombol
+    quizButton.onclick = () => startQuiz(materiId, 5); // Menambahkan fungsi klik untuk memulai kuis
+    materiDiv.appendChild(quizButton); // Menambahkan tombol kuis ke div materi
 
     const backButton = document.createElement("button");
-    backButton.classList.add("btn", "btn-secondary", "m-2");
-    backButton.innerText = "Back";
-    backButton.onclick = () => displayMateriButtons(); // Function to display materi buttons again
-    materiDiv.appendChild(backButton);
+    backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
+    backButton.innerText = "Back"; // Menambahkan teks tombol
+    backButton.onclick = () => displayMateriButtons(); // Menambahkan fungsi klik untuk kembali ke daftar materi
+    materiDiv.appendChild(backButton); // Menambahkan tombol kembali ke div materi
 
-    container.appendChild(materiDiv);
+    container.appendChild(materiDiv); // Menambahkan div materi ke kontainer
   }
 }
 
+// Fungsi untuk menampilkan tombol-tombol materi
 function displayMateriButtons() {
-  const container = document.getElementById("materi-quiz-container");
-  container.innerHTML = ""; // Clear previous content
+  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  container.innerHTML = ""; // Menghapus konten sebelumnya
 
-  const buttonsContainer = document.getElementById("materi-buttons-container");
-  buttonsContainer.innerHTML = ""; // Clear previous buttons
+  const buttonsContainer = document.getElementById("materi-buttons-container"); // Mendapatkan elemen kontainer tombol
+  buttonsContainer.innerHTML = ""; // Menghapus tombol-tombol sebelumnya
 
-  // Filter and sort dataMateri
+  // Menyortir dan memfilter dataMateri
   const sortedMateri = dataMateri.slice().sort((a, b) => {
-    // Sort by materi_id, move id 0 to the end
-    if (a.id === 0) return 1; // Move id 0 to the end
-    if (b.id === 0) return -1; // Move id 0 to the end
-    return a.id - b.id; // Sort by materi_id ascending for others
+    // Menyortir berdasarkan materi_id, memindahkan id 0 ke akhir
+    if (a.id === 0) return 1; // Memindahkan id 0 ke akhir
+    if (b.id === 0) return -1; // Memindahkan id 0 ke akhir
+    return a.id - b.id; // Menyortir berdasarkan materi_id secara ascending untuk lainnya
   });
 
-  // Display buttons for each materi in a grid (3 columns)
+  // Menampilkan tombol untuk setiap materi dalam grid (3 kolom)
   sortedMateri.forEach((materi) => {
-    const colDiv = createMateriButton(materi);
-    buttonsContainer.appendChild(colDiv);
+    const colDiv = createMateriButton(materi); // Membuat tombol untuk setiap materi
+    buttonsContainer.appendChild(colDiv); // Menambahkan tombol ke dalam kontainer
   });
 
-  // Generate button for posttest (assuming it should be after all other materi)
+  // Membuat tombol untuk posttest (diasumsikan setelah semua materi)
   const posttestButton = document.createElement("button");
-  posttestButton.classList.add("btn", "btn-danger", "w-100");
-  posttestButton.innerText = "Post Test";
-  posttestButton.onclick = () => startQuiz(0, 10); // 10 questions for posttest
-  buttonsContainer.appendChild(posttestButton);
+  posttestButton.classList.add("btn", "btn-danger", "w-100"); // Menambahkan kelas tombol Bootstrap
+  posttestButton.innerText = "Post Test"; // Menambahkan teks tombol
+  posttestButton.onclick = () => startQuiz(0, 10); // Menambahkan fungsi klik untuk memulai kuis
+  buttonsContainer.appendChild(posttestButton); // Menambahkan tombol ke dalam kontainer
 }
 
+// Fungsi untuk menampilkan video materi
 function displayVideo(materiId) {
-  const container = document.getElementById("materi-quiz-container");
-  container.innerHTML = ""; // Clear previous content
+  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  container.innerHTML = ""; // Menghapus konten sebelumnya
 
-  const materi = dataMateri.find((m) => m.id === materiId);
+  const materi = dataMateri.find((m) => m.id === materiId); // Menemukan materi berdasarkan id
   if (materi && materi.video) {
-    const videoDiv = document.createElement("div");
-    videoDiv.classList.add("embed-responsive", "embed-responsive-16by9");
+    const videoDiv = document.createElement("div"); // Membuat elemen div untuk video
+    videoDiv.classList.add("embed-responsive", "embed-responsive-16by9"); // Menambahkan kelas Bootstrap
     videoDiv.innerHTML = `<iframe class="embed-responsive-item" src="${materi.video}" allowfullscreen></iframe>`;
 
     const backButton = document.createElement("button");
-    backButton.classList.add("btn", "btn-secondary", "m-2");
-    backButton.innerText = "Back";
-    backButton.onclick = () => displayMateriOptions(materiId); // Function to display materi options again
+    backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
+    backButton.innerText = "Back"; // Menambahkan teks tombol
+    backButton.onclick = () => displayMateriOptions(materiId); // Menambahkan fungsi klik untuk kembali ke opsi materi
 
-    container.appendChild(videoDiv);
-    container.appendChild(backButton);
+    container.appendChild(videoDiv); // Menambahkan div video ke kontainer
+    container.appendChild(backButton); // Menambahkan tombol kembali ke kontainer
   } else {
-    container.innerHTML = "<p>Video tidak tersedia.</p>";
+    container.innerHTML = "<p>Video tidak tersedia.</p>"; // Menampilkan pesan jika video tidak tersedia
   }
 }
 
+// Fungsi untuk memulai kuis
 function startQuiz(materiId, numberOfQuestions) {
-  currentQuestionIndex = 0;
-  score = 0;
-  questions = [];
+  currentQuestionIndex = 0; // Mengatur indeks pertanyaan saat ini ke 0
+  score = 0; // Mengatur skor ke 0
+  questions = []; // Mengosongkan array pertanyaan
 
   if (materiId === 0) {
-    // Post test, get first 10 questions from the first materi
+    // Post test, mengambil 10 pertanyaan pertama dari materi pertama
     questions = dataMateri[0].quiz.slice(0, numberOfQuestions);
   } else {
-    const materi = dataMateri.find((m) => m.id === materiId);
+    const materi = dataMateri.find((m) => m.id === materiId); // Menemukan materi berdasarkan id
     if (materi && materi.quiz.length > 0) {
-      questions = materi.quiz.slice(0, numberOfQuestions);
+      questions = materi.quiz.slice(0, numberOfQuestions); // Mengambil sejumlah pertanyaan dari materi
     }
   }
 
   if (questions.length > 0) {
-    displayQuestion();
+    displayQuestion(); // Menampilkan pertanyaan pertama jika ada pertanyaan
   }
 }
 
+// Fungsi untuk menampilkan pertanyaan
 function displayQuestion() {
-  const container = document.getElementById("materi-quiz-container");
-  container.innerHTML = ""; // Clear previous content
+  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  container.innerHTML = ""; // Menghapus konten sebelumnya
 
-  const question = questions[currentQuestionIndex];
-  const questionDiv = document.createElement("div");
-  questionDiv.classList.add("quiz", "border-top", "pt-3");
+  const question = questions[currentQuestionIndex]; // Mengambil pertanyaan saat ini
+  const questionDiv = document.createElement("div"); // Membuat elemen div untuk pertanyaan
+  questionDiv.classList.add("quiz", "border-top", "pt-3"); // Menambahkan kelas Bootstrap
 
   if (question.type === "multiple_choice") {
     questionDiv.innerHTML = `
@@ -190,42 +196,44 @@ function displayQuestion() {
         `;
   }
 
-  const scoreDiv = document.createElement("div");
-  scoreDiv.classList.add("score", "mt-3");
+  const scoreDiv = document.createElement("div"); // Membuat elemen div untuk skor
+  scoreDiv.classList.add("score", "mt-3"); // Menambahkan kelas Bootstrap
   scoreDiv.innerHTML = `<p>Score: ${score}</p><p>Question: ${
     currentQuestionIndex + 1
   } of ${questions.length}</p>`;
 
-  container.appendChild(scoreDiv);
-  container.appendChild(questionDiv);
+  container.appendChild(scoreDiv); // Menambahkan div skor ke kontainer
+  container.appendChild(questionDiv); // Menambahkan div pertanyaan ke kontainer
 }
 
+// Fungsi untuk menangani jawaban pengguna
 function handleAnswer(userAnswer) {
-  const question = questions[currentQuestionIndex];
+  const question = questions[currentQuestionIndex]; // Mengambil pertanyaan saat ini
 
   if (
     userAnswer.trim().toLowerCase() === question.answer.trim().toLowerCase()
   ) {
-    score += 10;
+    score += 10; // Menambah skor jika jawaban benar
   }
 
-  currentQuestionIndex++;
+  currentQuestionIndex++; // Menambah indeks pertanyaan
 
   if (currentQuestionIndex < questions.length) {
-    displayQuestion();
+    displayQuestion(); // Menampilkan pertanyaan berikutnya jika masih ada
   } else {
-    displayResults();
+    displayResults(); // Menampilkan hasil jika tidak ada lagi pertanyaan
   }
 }
 
+// Fungsi untuk menampilkan hasil kuis
 function displayResults() {
-  const container = document.getElementById("materi-quiz-container");
-  container.innerHTML = `<h2>Your final score is: ${score}</h2>`;
+  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  container.innerHTML = `<h2>Your final score is: ${score}</h2>`; // Menampilkan skor akhir
 
   const backButton = document.createElement("button");
-  backButton.classList.add("btn", "btn-secondary", "m-2");
-  backButton.innerText = "Back to Materi List";
-  backButton.onclick = () => displayMateriButtons(); // Function to display materi buttons again
+  backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
+  backButton.innerText = "Back to Materi List"; // Menambahkan teks tombol
+  backButton.onclick = () => displayMateriButtons(); // Menambahkan fungsi klik untuk kembali ke daftar materi
 
-  container.appendChild(backButton);
+  container.appendChild(backButton); // Menambahkan tombol kembali ke kontainer
 }
