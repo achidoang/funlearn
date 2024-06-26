@@ -49,48 +49,72 @@ fetch("data/getData.php")
 
 // Fungsi untuk menampilkan opsi materi
 function displayMateriOptions(materiId) {
-  const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
+  const container = document.getElementById("materi-quiz-container");
   container.innerHTML = ""; // Menghapus konten sebelumnya
 
-  // Menambahkan kelas full-screen
-  container.classList.add("full-screen");
+  // Menambahkan kelas full-screen dan sentrisasi
+  container.classList.add(
+    "full-screen",
+    "d-flex",
+    "justify-content-center",
+    "align-items-center"
+  );
 
   const materi = dataMateri.find((m) => m.id === materiId); // Menemukan materi berdasarkan id
   if (materi) {
-    const materiDiv = document.createElement("div"); // Membuat elemen div untuk materi
-    materiDiv.classList.add("materi", "border", "p-3", "mb-3"); // Menambahkan kelas Bootstrap
-    materiDiv.innerHTML = `
-            <h2>${materi.title}</h2>
-            <p>${materi.description}</p>
-        `;
+    const materiDiv = document.createElement("div");
+    materiDiv.classList.add("materi", "border", "p-3", "mb-3", "text-center"); // Menambahkan kelas Bootstrap
 
-    // Membuat tombol untuk video dan kuis
+    materiDiv.style.maxWidth = "60%"; // Memuatkan lebar maksimal untuk teks materi
+    materiDiv.style.marginLeft = "auto"; // Membuat perataan tepi kiri
+    materiDiv.style.marginRight = "auto"; // Membuat perataan tepi kanan
+
+    materiDiv.innerHTML = `
+      <h2>${materi.title}</h2>
+      <p>${materi.description}</p>
+    `;
+
     if (materi.video) {
-      const videoButton = document.createElement("button");
-      videoButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
-      videoButton.innerText = "Nonton Video"; // Menambahkan teks tombol
-      videoButton.onclick = () => displayVideo(materiId); // Menambahkan fungsi klik untuk menampilkan video
-      materiDiv.appendChild(videoButton); // Menambahkan tombol video ke div materi
+      const videoButton = createButton("Nonton Video", "btn-info", () =>
+        displayVideo(materiId)
+      );
+      materiDiv.appendChild(videoButton);
     }
 
-    const quizButton = document.createElement("button");
-    quizButton.classList.add("btn", "btn-warning", "m-2"); // Menambahkan kelas tombol Bootstrap
-    quizButton.innerText = "Kerjakan Kuiz"; // Menambahkan teks tombol
-    quizButton.onclick = () => startQuiz(materiId, 5); // Menambahkan fungsi klik untuk memulai kuis
-    materiDiv.appendChild(quizButton); // Menambahkan tombol kuis ke div materi
+    const quizButton = createButton("Kerjakan Kuiz", "btn-warning", () =>
+      startQuiz(materiId, 5)
+    );
+    materiDiv.appendChild(quizButton);
 
-    const backButton = document.createElement("button");
-    backButton.classList.add("btn", "btn-secondary", "m-2"); // Menambahkan kelas tombol Bootstrap
-    backButton.innerText = "Back"; // Menambahkan teks tombol
-    backButton.onclick = () => {
-      container.classList.remove("full-screen"); // Menghapus kelas full-screen saat kembali ke daftar materi
+    const backButton = createButton("Back", "btn-outline-danger", () => {
+      container.classList.remove("full-screen");
       displayMateriButtons();
-    }; // Menambahkan fungsi klik untuk kembali ke daftar materi
-    materiDiv.appendChild(backButton); // Menambahkan tombol kembali ke div materi
+    });
+    materiDiv.appendChild(backButton);
 
-    container.appendChild(materiDiv); // Menambahkan div materi ke kontainer
+    container.appendChild(materiDiv);
   }
 }
+
+// Fungsi utilitas untuk membuat tombol dengan kelas dan fungsi klik
+function createButton(text, className, onClickHandler) {
+  const button = document.createElement("button");
+  button.innerText = text;
+  button.classList.add("btn", className, "m-2");
+  button.onclick = onClickHandler;
+  return button;
+}
+
+
+// Fungsi utilitas untuk membuat tombol dengan kelas dan fungsi klik
+function createButton(text, className, onClickHandler) {
+  const button = document.createElement("button");
+  button.innerText = text;
+  button.classList.add("btn", className, "m-2");
+  button.onclick = onClickHandler;
+  return button;
+}
+
 
 // Fungsi untuk menampilkan tombol-tombol materi
 function displayMateriButtons() {
@@ -164,18 +188,27 @@ function displayQuestion() {
   const container = document.getElementById("materi-quiz-container"); // Mendapatkan elemen kontainer kuis
   container.innerHTML = ""; // Menghapus konten sebelumnya
 
+  // Menambahkan kelas Bootstrap untuk sentrisasi penuh
+  container.classList.add(
+    "d-flex",
+    "flex-column",
+    "justify-content-center",
+    "align-items-center",
+    "vh-100"
+  );
+
   const question = questions[currentQuestionIndex]; // Mengambil pertanyaan saat ini
   const questionDiv = document.createElement("div"); // Membuat elemen div untuk pertanyaan
-  questionDiv.classList.add("quiz", "border-top", "pt-3"); // Menambahkan kelas Bootstrap
+  questionDiv.classList.add("quiz", "border-top", "pt-3", "text-center"); // Menambahkan kelas Bootstrap
 
   if (question.type === "multiple_choice") {
     questionDiv.innerHTML = `
             <p class="question font-weight-bold">${question.question}</p>
-            <ul class="options list-unstyled">
+            <ul class="options list-unstyled d-flex flex-column align-items-center">
                 ${question.options
                   .map(
                     (option) =>
-                      `<li class="my-2"><button class="btn btn-outline-primary" onclick="handleAnswer('${option.option}')">${option.option}</button></li>`
+                      `<li class="my-2"><button class="btn btn-outline-primary" style="width: 200px;" onclick="handleAnswer('${option.option}')">${option.option}</button></li>`
                   )
                   .join("")}
             </ul>
@@ -183,13 +216,13 @@ function displayQuestion() {
   } else if (question.type === "short_answer") {
     questionDiv.innerHTML = `
             <p class="question font-weight-bold">${question.question}</p>
-            <input type="text" id="shortAnswer" class="form-control mb-2" placeholder="Your answer"/>
+            <input type="text" id="shortAnswer" class="form-control mb-2 text-center" style="max-width: 300px;" placeholder="Your answer"/>
             <button class="btn btn-primary" onclick="handleAnswer(document.getElementById('shortAnswer').value)">Submit</button>
         `;
   }
 
   const scoreDiv = document.createElement("div"); // Membuat elemen div untuk skor
-  scoreDiv.classList.add("score", "mt-3"); // Menambahkan kelas Bootstrap
+  scoreDiv.classList.add("score", "mt-3", "text-center"); // Menambahkan kelas Bootstrap
   scoreDiv.innerHTML = `<p>Score: ${score}</p><p>Question: ${
     currentQuestionIndex + 1
   } of ${questions.length}</p>`;
@@ -197,6 +230,7 @@ function displayQuestion() {
   container.appendChild(scoreDiv); // Menambahkan div skor ke kontainer
   container.appendChild(questionDiv); // Menambahkan div pertanyaan ke kontainer
 }
+
 
 // Fungsi untuk menangani jawaban pengguna
 function handleAnswer(userAnswer) {
